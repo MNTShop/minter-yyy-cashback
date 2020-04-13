@@ -221,65 +221,76 @@ class YYY_push
         }
         return $this;
     }
-    public function payOffCoupon(  $tries=2){
+    public function payOffCoupon(WC_Coupon $coupon, $tries=2)
+    {
         //first get balance push
-//        $minterHelper = new FunFasy_helper();
-//        $tickerCostBip = $minterHelper->getTickerPriceBip($this->$this->ticker);
+        $minter_helper = new FunFasy_helper();
         $options = get_option($this->plugin_name);
-        $newPush=[];
+        $newPush = [];
         $balance = $this->getlinkBalance();
-        if(!empty($balance)){
-//            error_log(print_r($balance->balance->value,1));
+        if (!empty($balance)) {
+            $amountPush = $balance->balance->value;
 
-//            $cost_bip = $this->$this->cost*$tickerCostBip-1.7; //minus commision
-//            error_log('try this '.$cost_bip/$tickerCostBip);
-
-            $value_to_get = $balance->balance->value;
-            error_log(print_r($value_to_get,1));
-            error_log('getCost'.print_r($this->cost,1));
-
-
+            if ($this->ticker == 'BIP') {
+                $amount = $balance->balance->value * $this->bip_price; // Amount fixed in local currency
+            } else {
+                $amount = $balance->balance->value * $this->bip_price * $minter_helper->getTickerPriceBip($this->ticker);
+                // Fixed amount discount
+            }
+            if($amountPush==0){
+                update_post_meta($coupon->get_id(), 'coupon_amount', $amount);
+                $this->setCouponSpend(true);
+                $this->save();
+                //купон уже использован
+                return false;
+            }
             $newPush = [
-                "option"=> "transfer-minter" ,
-                "params"=> [
-                    "amount"=>$value_to_get,
-                    "to"=>$options['minter_wallet_address']
+                "option" => "transfer-minter",
+                "params" => [
+                    "amount" => $amountPush,
+                    "to" => $options['minter_wallet_address']
                 ]
-
             ];
-        }
-        if(!empty($this->password)){
-            $newPush['password']=$this->password;
+
+        if (!empty($this->password)) {
+            $newPush['password'] = $this->password;
         }
         try {
-            $responseNewPush = $this->getClient()->post('https://push.money/api/spend/'.$this->link_id,[
+            $responseNewPush = $this->getClient()->post('https://push.money/api/spend/' . $this->link_id, [
                 GuzzleHttp\RequestOptions::JSON => $newPush // or 'json' => [...]
             ]);
-            if($responseNewPush->getStatusCode() ==200) {
+            if ($responseNewPush->getStatusCode() == 200) {
                 $pushObj = json_decode($responseNewPush->getBody());
                 //sucssess spend
-                    $this->setCouponSpend(true);
-                    $this->save();
+                update_post_meta($coupon->get_id(), 'coupon_amount', $amount);
+                $this->setCouponSpend(true);
+                $this->save();
                 return true;
-            }else{
+            } else {
+                error_log('not Pay off coupon' . $coupon->get_code());
+                //ошибка не удалось обналичить купон
                 return false;
             }
 
-        }catch (RequestException $exception) {
+        } catch (RequestException $exception) {
 
             $content = $exception->getResponse()
                 ->getBody()
                 ->getContents();
 
             $error = json_decode($content, true);
-            error_log('Can not pay off coupon '.print_r($content,1));
-            if($tries == 2){
+            if ($tries == 2) {
+                //ошибка не удалось обналичить купон
+                error_log('Can not pay off coupon ' . print_r($content, 1));
                 return false;
-            }else{
+            } else {
                 //try retry 3 times
-                $tries=$tries+1;
-                $this->payOffCoupon($tries);
+                $tries = $tries + 1;
+                $this->payOffCoupon($coupon,$tries);
             }
+        }
+    }else{
+            return false;
         }
     }
 
@@ -443,10 +454,7 @@ class YYY_push
         add_filter( 'wp_mail_content_type',[$this,'wps_set_content_type'] );
 
         $headers = "From: " . $options['register_email_from'] . "\r\n";
-        //message param
-
         $subject = __('Coupon with true money!', $this->plugin_name);
-
         $htmlMessage = $options['register_email_template'];
         //Search and replace
         $password_message = '';
@@ -482,29 +490,23 @@ class YYY_push
         return $status;
     }
 
-
-
-
     public function generate_coupon_for_push(){
         //create coupon for variation product
         /**
          * Create a coupon programatically
          */
         $minter_helper = new FunFasy_helper();
+        $commission = $minter_helper->getCommission($this);
+        $amount_to_transfer = $this->cost-$commission;
         $coupon_code = $this->link_id; // Code
         //get commission
-        $commission = $minter_helper->getCommission($this);
-
         //converted from bip to local currency
-        if($this->ticker=='BIP'){
-            $amount = $this->cost-$commission*$this->bip_price; // Amount fixed in local currency
+        if($this->ticker==='BIP'){
+            $amount = $amount_to_transfer*$this->bip_price;
         }else{
-            $amount = $this->cost-$commission*$this->bip_price*$minter_helper->getTickerPriceBip($this->ticker);
-         // Amount fixed in local currency
+            $TickerPriceBip = $minter_helper->getTickerPriceBip($this->ticker);
+            $amount = $amount_to_transfer*$this->bip_price*$TickerPriceBip;
         }
-//        error_log('getCost'.$this->cost);
-        error_log('generate_coupon_for_push $amount '.$amount);
-//        error_log('generate_coupon_for_push $minter_helper->getTickerPriceBip($this->$this->ticker'.$minter_helper->getTickerPriceBip($this->ticker));
         $discount_type = 'fixed_cart'; // Type: fixed_cart, percent, fixed_product, percent_product
         $coupon = array(
             'post_title' => $coupon_code,

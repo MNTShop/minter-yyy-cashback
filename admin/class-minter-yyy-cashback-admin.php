@@ -152,7 +152,7 @@ class Minter_Yyy_Cashback_Admin {
         $opts['can_export'] = TRUE;
         $opts['capability_type'] = $cap_type;
         $opts['capabilities'] = $capabilities;
-        $opts['map_meta_cap'] = false;
+//        $opts['map_meta_cap'] = false;
         $opts['description'] = '';
         $opts['supports'] = array( 'title');
         $opts['exclude_from_search'] = TRUE;
@@ -298,6 +298,7 @@ class Minter_Yyy_Cashback_Admin {
         echo '<input type="text" id="'.$YYY_Push::getTickerKey().'" name="'.$YYY_Push::getTickerKey().'" value="'. $YYY_Push->getTicker() .'" size="25" /></div>';
         echo '<div class="section"><label for="'.$YYY_Push::getCouponSpendKey().'">' . __("Push pay off coupon", $this->plugin_name ) . '</label> ';
         echo '<input type="text" id="'.$YYY_Push::getCouponSpendKey().'" name="'.$YYY_Push::getCouponSpendKey().'" value="'. $YYY_Push->isCouponSpend() .'" size="25" /></div>';
+        echo '<div class="section"><label >' . __("Push URL: ", $this->plugin_name ) . '</label>  <a href="https://yyy.cash/push/'. $YYY_Push->getLinkId() .'">https://yyy.cash/push/'. $YYY_Push->getLinkId() .'</a>';
 
 //        }
     }

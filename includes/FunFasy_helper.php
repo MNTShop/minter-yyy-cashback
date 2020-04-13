@@ -49,31 +49,22 @@ class FunFasy_helper
 
     public function getTickerPriceBip($ticker)
     {
-
-        $httpClient = new \GuzzleHttp\Client([
-            'base_uri' => 'https://mnt.funfasy.dev/',
-            'verify' => false,
-            'connect_timeout' => 5.0,
-            'timeout' => 30.0,
-
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'X-Project-Id' => '6c9c46aa-70af-4793-9a45-8c7c82fe1665',
-                'X-Project-Secret' => '80c73623afc3787a6f51084979bd66d9',
-            ]
-        ]);
-        $api = new MinterAPI($httpClient);
-        $minter_coupon_ticker = $ticker;
-            $response = $api->estimateCoinSell($minter_coupon_ticker, 100, 'BIP');
+        if($ticker!=='BIP'){
+            $api = new MinterAPI($this->client);
+            $response = $api->estimateCoinSell($ticker, 100, 'BIP');
             $priceBIP_ticker= $response->result->will_get/100;
-        return $priceBIP_ticker;
+            return $priceBIP_ticker;
+        }
+        else{
+            return 1;
+        }
 
     }
 
     public function pay_off_push(YYY_push $push, $tries=0){
         if (empty($push->getHash())){
             $options = get_option($this->plugin_name);
-            $api = new MinterAPI($this->getClient());
+            $api = new MinterAPI($this->client);
             $tx = new MinterTx([
                 'nonce' => $api->getNonce($this->getMinterWalletAddress()),
                 'chainId' => MinterTx::MAINNET_CHAIN_ID,
@@ -91,13 +82,11 @@ class FunFasy_helper
             ]);
             $transaction = $tx->sign($this->getMinterWalletPrivateKey());
             try {
-                $response_commission = $api->estimateTxCommission($tx);
-               error_log( print_r($response_commission,1));
+                $response_commission = $api->estimateTxCommission($transaction);
                 $push->setCommission($response_commission->result->commission/1000000000000000000);
                 $response = $api->send($transaction);
                 $hash = $response->result->hash;
                 $push->setHash($hash);
-                error_log('Add money to https://yyy.cash/push/' . $push->getLinkId());
                 $push->save();
                 return $push;
             } catch (RequestException $exception) {
@@ -109,7 +98,7 @@ class FunFasy_helper
                     ->getContents();
                 // error response as array
                 $error = json_decode($content, true);
-                error_log(print_r($error, 1) . ' Not generate push: ' );
+                error_log(print_r($error, 1) . ' Not generate push cant send money ' );
                 $transaction = 0;
                 if($tries == 3){
                     return false;
@@ -127,7 +116,7 @@ class FunFasy_helper
         if($address === 0) {
             $address = $this->getMinterWalletAddress();
         }
-        $api = new MinterAPI($this->getClient());
+        $api = new MinterAPI($this->client);
         try {
             $response = $api->getBalance($address);
             $balance = $response->result->balance->BIP;
@@ -156,7 +145,7 @@ class FunFasy_helper
         if($address === 0) {
             $address = $this->getMinterWalletAddress();
         }
-        $api = new MinterAPI($this->getClient());
+        $api = new MinterAPI($this->client);
         try {
             $response = $api->getBalance($address);
             $balance = $response->result->balance->$ticker;
@@ -170,9 +159,9 @@ class FunFasy_helper
                 ->getContents();
             // error response as array
             $error = json_decode($content, true);
-            error_log( ' cant getBalanceBip: '.print_r($error, 1)  );
+            error_log( ' cant getBalanceTicker: '.print_r($error, 1)  );
             if($tries == 3){
-                error_log('Max call reached getBalanceBip');
+                error_log('Max call reached getBalanceTicker');
                 return false;
             }else{
                 $tries=$tries+1;
@@ -183,7 +172,7 @@ class FunFasy_helper
     }
 
     public function getCommission(YYY_push $push){
-        $api = new MinterAPI($this->getClient());
+        $api = new MinterAPI($this->client);
         $tx = new MinterTx([
             'nonce' => $api->getNonce($this->getMinterWalletAddress()),
             'chainId' => MinterTx::MAINNET_CHAIN_ID,
@@ -201,7 +190,7 @@ class FunFasy_helper
         ]);
         $transaction = $tx->sign($this->getMinterWalletPrivateKey());
         try {
-            $api = new MinterAPI($this->getClient());
+            $api = new MinterAPI($this->client);
 
             $response = $api->estimateTxCommission($transaction);
             $commission = $response->result->commission;

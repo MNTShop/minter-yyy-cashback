@@ -100,12 +100,10 @@ class Minter_Yyy_Cashback_Public {
 
 	}
 
-	//Создаем пуш для новых пользователей на основе опции
-
+	//Create new push reward based on option
     public function pay_for_user_registration($user_id){
         $options = get_option($this->plugin_name);
         $user_info = get_userdata($user_id);
-        //Set up push
         $YYY_push = new YYY_push();
         $YYY_push
             ->setUserId($user_id)
@@ -115,25 +113,18 @@ class Minter_Yyy_Cashback_Public {
             ->setTicker($options['ticker'])
             ->setBipPrice($options['bip_price'])
             ->setTitleAdmin('pay for register '.$user_info->user_email);
-// insert post meta
         if($options['register_use_password']){
             $YYY_push->setPassword(bin2hex(random_bytes(3)));
         }if($options['register_customization_id']){
             $YYY_push->setCustomizationSettingId( $options['register_customization_id']);
         }
-//        //init register_push for user in databbase
-//        $databasePushId = $this->create_register_push_in_database($options,$user_id);
-//        //get push address from YYY.CASH
         $YYY_push->request_push();
         $minter_helper = new FunFasy_helper();
             if($minter_helper->pay_off_push($YYY_push)!==false){
-                //generate woocommerce coupon if must
                 if($options['woocommerce_generate_coupons']){
                     $YYY_push->generate_coupon_for_push();
                 }
-                // send e-mail message to user
                 if(false===$YYY_push->sendEmail('register')){
-                    // email not send
                     error_log('Email with minter push are Not send '.$YYY_push->getTitleAdmin());
                 }
             }else{
@@ -145,12 +136,10 @@ class Minter_Yyy_Cashback_Public {
 
 
     // This filter allows custom coupon objects to be created on the fly.
-
-// Accepting two arguments (three possible).
-    function update_coupon_if_YYYPush( $value, WC_Coupon $coupon,  WC_Discounts $WC_Discounts) {
-        if(!empty($coupon))
-            //here we go
-            //get Coupons generated with from push with code
+    // Accepting two arguments (three possible).
+   public function update_coupon_if_YYYPush( bool $value, WC_Coupon $coupon,  WC_Discounts $WC_Discounts)
+    {
+        if (!empty($coupon)) {
             $transactionQuery = get_posts([
                     'post_type' => 'minter-push',
                     'orderby' => 'date',
@@ -158,33 +147,31 @@ class Minter_Yyy_Cashback_Public {
                     'order' => 'DESC',
                     'posts_per_page' => 1,
                     'meta_query' => array(
-                        // meta query takes an array of arrays, watch out for this!
                         array(
-                            'key'     => YYY_push::getLinkIdKey(),
-                            'value'   => $coupon->get_code(),
+                            'key' => YYY_push::getLinkIdKey(),
+                            'value' => $coupon->get_code(),
                             'compare' => 'IN'
                         )
                     )
                 ]
             );
-        if (!empty($transactionQuery)) {
-            // so we have transaction
-            $postIdPush = $transactionQuery[0]->ID;
-            $YYY_Push = new YYY_push($postIdPush);
-            //pay off
-            //check already payed?
-            if(!$YYY_Push->isCouponSpend()) {
-                if ($YYY_Push->payOffCoupon()) {
-                    //change to current price
-                    return $value;
+            if (!empty($transactionQuery)) {
+                $postIdPush = $transactionQuery[0]->ID;
+                $YYY_Push = new YYY_push($postIdPush);
+                //check already payed?
+                if (!$YYY_Push->isCouponSpend()) {
+                    if ($YYY_Push->payOffCoupon($coupon)) {
+                        //change to current price
+                        return $value;
+                    } else {
+                        return false;
+                    }
                 } else {
-                    return false;
+                    return $value;
                 }
-            }else{
-                return $value;
             }
+
         }
-
+        return $value;
     }
-
 }
