@@ -1,0 +1,19 @@
+{
+    "name": "mntshop/minter-yyy-cashback",
+    "description": "Plugin to add YYY Push to wordpress site",
+    "type": "project",
+    "require": {
+        "minter/minter-php-sdk": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "MinterYYYCashback\\": "includes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "German Vereschak",
+            "email": "general@mntshop.ru"
+        }
+    ]
+}

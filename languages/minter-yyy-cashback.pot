@@ -1,0 +1,389 @@
+# Copyright (C) 2020 Geman Vereschak
+# This file is distributed under the same license as the minter-yyy-cashback plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: minter-yyy-cashback 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/minter-yyy-cashback\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-04-13T02:28:42+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+
+#. Plugin Name of the plugin
+msgid "minter-yyy-cashback"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://mntshop.ru"
+msgstr ""
+
+#. Description of the plugin
+msgid "Plugin that give you power of rewards your client! example for registration. Use FunFasy.dev to send minter transaction and YYY.cash to generate containers with money."
+msgstr ""
+
+#. Author of the plugin
+msgid "Geman Vereschak"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:112
+msgid "Minter Push YYY.cash settings"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:131
+msgid "Settings"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:260
+msgid "Minter YYY info"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:275
+msgid "Push cost"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:277
+msgid "User ID"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:279
+msgid "Recipient email"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:281
+msgid "Sender"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:283
+msgid "Password Push"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:285
+#: admin/partials/minter-yyy-cashback-admin-display.php:161
+msgid "Customization id"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:287
+msgid "Push link ID"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:289
+msgid "Minter push address"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:291
+msgid "Deep link push"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:293
+msgid "Hash add balance"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:295
+msgid "Email send?"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:297
+msgid "Push ticker"
+msgstr ""
+
+#: admin/class-minter-yyy-cashback-admin.php:299
+msgid "Push pay off coupon"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:85
+msgid "Welcome"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:86
+msgid "FunFasy"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:90
+msgid "Woocommerce"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:92
+msgid "Minter Wallet"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:93
+msgid "Rewards"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:109
+msgid "Register on site"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:115
+msgid "Active reward?"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:122
+#: admin/partials/minter-yyy-cashback-admin-display.php:136
+#: admin/partials/minter-yyy-cashback-admin-display.php:365
+msgid "Enabled"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:128
+msgid "Use password in push?"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:139
+msgid "Impossible if active WooCommerce generate coupons"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:145
+msgid "How many coins do you want to reward?"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:152
+msgid "In Minter Wallet section you can add custom ticker"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:158
+msgid "Customization push settings"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:168
+msgid "Animation type"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:172
+msgid "Without animation"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:174
+msgid "Papper plane"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:176
+msgid "Gift sending"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:178
+msgid "Milos time"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:181
+msgid "Head text push"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:188
+msgid "Animation text"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:196
+msgid "Background"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:199
+msgid "Standard"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:200
+msgid "Black"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:201
+msgid "Purple"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:202
+msgid "Beige"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:203
+msgid "Pink"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:204
+msgid "Blue"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:205
+msgid "Green"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:211
+msgid "E-mail notification"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:216
+msgid "E-mail from"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:224
+msgid "E-mail subject"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:233
+msgid "HTML E-mail #PASSWORD_MESSAGE#"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:243
+msgid "HTML E-mail #COUPON_MESSAGE#"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:252
+msgid "HTML E-mail template"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:258
+msgid ""
+"You can use template vars:<br>\n"
+"                                #COUPON_MESSAGE# - If you check generate coupon, in woocommerce settings, you can tell it to your customers in custom message<br>\n"
+"                                #PASSWORD_MESSAGE# - If you check generate push password , you can tell also it to your customers in custom message<br>\n"
+"                                #PUSH_URL# - Generated push url<br>\n"
+"                                #PUSH_LINK_ID# - Generated Link ID push also coupon code for woocommerce<br>\n"
+"                                #PUSH_PASSWORD# - Generated push password<br>\n"
+"                                #SITE_NAME# - returned from get_bloginfo() (Your default site name)\n"
+"                                "
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:280
+msgid "Wallet ticker"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:287
+msgid "Which coin use for pushes? example BIP"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:293
+msgid "Addres which send Push for clients"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:304
+msgid "Minter wallet mnemonic"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:314
+msgid "Minter wallet public key"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:324
+msgid "Minter wallet private key"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:334
+msgid "Minter Wallet seed"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:359
+msgid "Use Coupons?"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:371
+msgid "Bip cost"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:391
+msgid "PROJECT ID"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:402
+msgid "PROJECT SECRET"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:409
+msgid "more info how to get it on <a target=\"_blank\" href=\"https://funfasy.dev/\">https://funfasy.dev/</a>"
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:424
+msgid ""
+"\n"
+"                    <h1> Welcome To Minter YYY Cashback plugin! </h1>\n"
+"                    <h2>Description</h2>\n"
+"                        <p>Plugin created for <code> #MinterPush 0.2 – Rewards Hackathon–Subscriptions</code></p>\n"
+"                        <p>Wordpress Plugin gives you the power of rewards your client! example for registration.\n"
+"                            Use FunFasy.dev to send minter transaction and YYY.cash to generate containers with money.</p>\n"
+"                            <p>Throw next to walkthrough setup</p>\n"
+"                        <h3>In plugin settings</h3>\n"
+"                        <h4>FUNFASY Settings section</h4>\n"
+"                        <p>Register at <a href=\"https://funfasy.dev/\" rel=\"nofollow\">https://funfasy.dev/</a> and get your API keys and input your:\n"
+"                            <code>PROJECT ID</code>\n"
+"                            <code>PROJECT SECRET</code></p>\n"
+"                        <h4>Minter Wallet Settings section</h4>\n"
+"                        <blockquote>\n"
+"                            <p>When you install a plugin that generates a new empty wallet to send rewards.</p>\n"
+"                        </blockquote>\n"
+"                        <p>Input your ticker here. All generated rewards will be sent in that ticker.</p>\n"
+"                        <p>The balance would be displayed in the ticker</p>\n"
+"                        <blockquote>\n"
+"                            <p>Also in this section contain all information about wallet. Such as wallet mnemonic phrase, just copy and paste in your wallet app for example here <a href=\"https://wallet.bip.to\" title=\"BIP Wallet\" rel=\"nofollow\">BIP Wallet</a>. And you can administrate wallet your new wallet.</p>\n"
+"                        </blockquote>\n"
+"                        <h4 >Rewards Settings section</h4>\n"
+"                        <blockquote>\n"
+"                            <p>In this section we have all predefined events like <code>Register on site </code>. You can customize it, but first, activate and some setup.</p>\n"
+"                        </blockquote>\n"
+"                        <p>Available options:</p>\n"
+"                        <ul>\n"
+"                            <li>Active (Activate reward)</li>\n"
+"                            <li>Generate password (If you want to generate random password for reward)</li>\n"
+"                            <li>How many coins do you want to reward? (how many coins will be sent for this reward)</li>\n"
+"                            <li>Customization push settings (Customize reward)</li>\n"
+"                            <li>Email notification settings (Customize Email notification such as from, template and some conditional message)</li>\n"
+"                        </ul>\n"
+"                        <blockquote>\n"
+"                            <p>Feel free to use default settings like a template</p>\n"
+"                        </blockquote>\n"
+"                        <h4>Woocommerce Settings section</h4>\n"
+"                        <blockquote>\n"
+"                            <p>In this section store params for woocommerce.</p>\n"
+"                        </blockquote>\n"
+"                        <p>Available options:</p>\n"
+"                        <ul>\n"
+"                            <li>BIP price ( First of all tell the plugin how many cost BIP in your local currency )</li>\n"
+"                            <li>Coupon generate ( You can activate coupon generator. After activated all rewards will generate woocommerce coupons basically on BIP cost )</li>\n"
+"                        </ul>\n"
+"                        <h2>Frequently Asked Questions</h2>\n"
+"                        <h3>Which services do you use?</h3>\n"
+"                        <p>We use:</p>\n"
+"                        <ul>\n"
+"                            <li>FunFasy api to connect Minter Blockchain here more info <a href=\"https://funfasy.dev/\" title=\"https://funfasy.dev/\" rel=\"nofollow\">FunFasy</a></li>\n"
+"                            <li>YYY.cash api to generate containers with money here more info <a href=\"https://push.money/swagger\" title=\"https://push.money/swagger\" rel=\"nofollow\">YYY.cash</a></li>\n"
+"                        </ul>\n"
+"                        <h3></a>What about woocomerce?</h3>\n"
+"                        <p>Currently, you can create cupon with minter push id and also add your price for BIP.\n"
+"                            That means when push creates woocommerce generate a coupon with a fixed discount with the amount in a push.</p>\n"
+"                        <h2>Changelog</h2>\n"
+"                        <h3>1.0</h3>\n"
+"                        <ul>\n"
+"                            <li>Add language: Russian.</li>\n"
+"                            <li>Add support to generate coupons.</li>\n"
+"                            <li>Add FunFasy_helper (send transaction) .</li>\n"
+"                            <li>Add YYY_push (the object that has all info about the push and working with it).</li>\n"
+"                            <li>Add Admin Interface.</li>\n"
+"                            <li>Add New Post type: minter-push. (You can view all generated pushes)</li>\n"
+"                        </ul>\n"
+""
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:497
+msgid "Save all changes"
+msgstr ""
+
+#: includes/class-minter-yyy-cashback-activator.php:50
+msgid " дарит бонусы за регистрацию!"
+msgstr ""
+
+#: includes/class-minter-yyy-cashback-activator.php:64
+msgid "We have a present for you! Check this out and spend it!"
+msgstr ""
+
+#: includes/class-minter-yyy-cashback-activator.php:67
+#: includes/YYY_push.php:448
+msgid "Coupon with true money!"
+msgstr ""
+
+#: includes/class-minter-yyy-cashback-activator.php:69
+msgid "Or you can fill on checkout and get discount! <b> coupon code: #PUSH_LINK_ID# </b>"
+msgstr ""
+
+#: includes/class-minter-yyy-cashback-activator.php:70
+msgid "To open fill  <b> password: #PUSH_PASSWORD# </b> "
+msgstr ""
