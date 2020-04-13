@@ -394,6 +394,7 @@ $balanceBipConverted=$minter_helper->getBalanceTicker(0,$options['ticker']);
                     <h1> Welcome To Minter YYY Cashback plugin! </h1>
                     <h2>Description</h2>
                         <p>Plugin created for <code> #MinterPush 0.2 – Rewards Hackathon–Subscriptions</code></p>
+                        <p>EVERY question about this plugin asked here <a href="https://t.me/mntshop_official_group" rel="nofollow">[Official Telegram group]</a> would be answered.</p>
                         <p>Wordpress Plugin gives you the power of rewards your client! example for registration.
                             Use FunFasy.dev to send minter transaction and YYY.cash to generate containers with money.</p>
                             <p>Throw next to walkthrough setup</p>

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/minter-yyy-"
 "cashback\n"
-"POT-Creation-Date: 2020-04-13T15:53:08+00:00\n"
+"POT-Creation-Date: 2020-04-13T22:42:21+00:00\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -70,7 +70,7 @@ msgid "Password Push"
 msgstr "Пароль пуша"
 
 #: admin/class-minter-yyy-cashback-admin.php:285
-#: admin/partials/minter-yyy-cashback-admin-display.php:161
+#: admin/partials/minter-yyy-cashback-admin-display.php:130
 msgid "Customization id"
 msgstr "Customization id"
 
@@ -102,145 +102,149 @@ msgstr "Push тикер"
 msgid "Push pay off coupon"
 msgstr "Купон обналичен?"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:85
+#: admin/class-minter-yyy-cashback-admin.php:301
+msgid "Push URL: "
+msgstr ""
+
+#: admin/partials/minter-yyy-cashback-admin-display.php:54
 msgid "Welcome"
 msgstr "Добро пожаловать"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:86
+#: admin/partials/minter-yyy-cashback-admin-display.php:55
 msgid "FunFasy"
 msgstr "FunFasy"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:90
+#: admin/partials/minter-yyy-cashback-admin-display.php:59
 msgid "Woocommerce"
 msgstr "Woocommerce"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:92
+#: admin/partials/minter-yyy-cashback-admin-display.php:61
 msgid "Minter Wallet"
 msgstr "Minter Wallet"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:93
+#: admin/partials/minter-yyy-cashback-admin-display.php:62
 msgid "Rewards"
 msgstr "Награды"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:109
+#: admin/partials/minter-yyy-cashback-admin-display.php:78
 msgid "Register on site"
 msgstr "Регистрация на сайте"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:115
+#: admin/partials/minter-yyy-cashback-admin-display.php:84
 msgid "Active reward?"
 msgstr "Активировать награду?"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:122
-#: admin/partials/minter-yyy-cashback-admin-display.php:136
-#: admin/partials/minter-yyy-cashback-admin-display.php:365
+#: admin/partials/minter-yyy-cashback-admin-display.php:91
+#: admin/partials/minter-yyy-cashback-admin-display.php:105
+#: admin/partials/minter-yyy-cashback-admin-display.php:334
 msgid "Enabled"
 msgstr "Включено"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:128
+#: admin/partials/minter-yyy-cashback-admin-display.php:97
 msgid "Use password in push?"
 msgstr "Генерировать пароли для пушей?"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:139
+#: admin/partials/minter-yyy-cashback-admin-display.php:108
 msgid "Impossible if active WooCommerce generate coupons"
 msgstr "Невозможно если активировано WooCommerce генерировать купоны"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:145
+#: admin/partials/minter-yyy-cashback-admin-display.php:114
 msgid "How many coins do you want to reward?"
 msgstr "Сколько монет потратить на награду?"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:152
+#: admin/partials/minter-yyy-cashback-admin-display.php:121
 msgid "In Minter Wallet section you can add custom ticker"
 msgstr "В секции Minter Wallet вы можете добавить свой тикер"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:158
+#: admin/partials/minter-yyy-cashback-admin-display.php:127
 msgid "Customization push settings"
 msgstr "Настройка кастомизации пушей"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:168
+#: admin/partials/minter-yyy-cashback-admin-display.php:137
 msgid "Animation type"
 msgstr "Тип анимации"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:172
+#: admin/partials/minter-yyy-cashback-admin-display.php:141
 msgid "Without animation"
 msgstr "Без анимации"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:174
+#: admin/partials/minter-yyy-cashback-admin-display.php:143
 msgid "Papper plane"
 msgstr "Бумажный самолёт"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:176
+#: admin/partials/minter-yyy-cashback-admin-display.php:145
 msgid "Gift sending"
 msgstr "Получение подарка"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:178
+#: admin/partials/minter-yyy-cashback-admin-display.php:147
 msgid "Milos time"
 msgstr "Без комментариев"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:181
+#: admin/partials/minter-yyy-cashback-admin-display.php:150
 msgid "Head text push"
 msgstr "Подпись шапки пуша"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:188
+#: admin/partials/minter-yyy-cashback-admin-display.php:157
 msgid "Animation text"
 msgstr "Текст анимации"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:196
+#: admin/partials/minter-yyy-cashback-admin-display.php:165
 msgid "Background"
 msgstr "Фоновый цвет"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:199
+#: admin/partials/minter-yyy-cashback-admin-display.php:168
 msgid "Standard"
 msgstr "Стандартный"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:200
+#: admin/partials/minter-yyy-cashback-admin-display.php:169
 msgid "Black"
 msgstr "Черный"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:201
+#: admin/partials/minter-yyy-cashback-admin-display.php:170
 msgid "Purple"
 msgstr "Пурпурный"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:202
+#: admin/partials/minter-yyy-cashback-admin-display.php:171
 msgid "Beige"
 msgstr "Бежевый"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:203
+#: admin/partials/minter-yyy-cashback-admin-display.php:172
 msgid "Pink"
 msgstr "Розовый"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:204
+#: admin/partials/minter-yyy-cashback-admin-display.php:173
 msgid "Blue"
 msgstr "Синий"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:205
+#: admin/partials/minter-yyy-cashback-admin-display.php:174
 msgid "Green"
 msgstr "Зеленый"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:211
+#: admin/partials/minter-yyy-cashback-admin-display.php:180
 msgid "E-mail notification"
 msgstr "E-mail уведомления"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:216
+#: admin/partials/minter-yyy-cashback-admin-display.php:185
 msgid "E-mail from"
 msgstr "E-mail От"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:224
+#: admin/partials/minter-yyy-cashback-admin-display.php:193
 msgid "E-mail subject"
 msgstr "E-mail тема"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:233
+#: admin/partials/minter-yyy-cashback-admin-display.php:202
 msgid "HTML E-mail #PASSWORD_MESSAGE#"
 msgstr "HTML E-mail #PASSWORD_MESSAGE#"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:243
+#: admin/partials/minter-yyy-cashback-admin-display.php:212
 msgid "HTML E-mail #COUPON_MESSAGE#"
 msgstr "HTML E-mail #COUPON_MESSAGE#"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:252
+#: admin/partials/minter-yyy-cashback-admin-display.php:221
 msgid "HTML E-mail template"
 msgstr "HTML E-mail template"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:258
+#: admin/partials/minter-yyy-cashback-admin-display.php:227
 msgid ""
 "You can use template vars:<br>\n"
 "                                #COUPON_MESSAGE# - If you check generate "
@@ -275,51 +279,51 @@ msgstr ""
 "(Имя вашего сайта)\n"
 "                                "
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:280
+#: admin/partials/minter-yyy-cashback-admin-display.php:249
 msgid "Wallet ticker"
 msgstr "Тикер кошелька"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:287
+#: admin/partials/minter-yyy-cashback-admin-display.php:256
 msgid "Which coin use for pushes? example BIP"
 msgstr "Какой тикер использовать для отправки пушей? Например BIP"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:293
+#: admin/partials/minter-yyy-cashback-admin-display.php:262
 msgid "Addres which send Push for clients"
 msgstr "Адрес, который отправляет пуши"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:304
+#: admin/partials/minter-yyy-cashback-admin-display.php:273
 msgid "Minter wallet mnemonic"
 msgstr "Minter мнемоническая фраза"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:314
+#: admin/partials/minter-yyy-cashback-admin-display.php:283
 msgid "Minter wallet public key"
 msgstr "Minter публичный ключ кошелька"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:324
+#: admin/partials/minter-yyy-cashback-admin-display.php:293
 msgid "Minter wallet private key"
 msgstr "Minter приватный ключ кошелька"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:334
+#: admin/partials/minter-yyy-cashback-admin-display.php:303
 msgid "Minter Wallet seed"
 msgstr "Minter seed кошелька"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:359
+#: admin/partials/minter-yyy-cashback-admin-display.php:328
 msgid "Use Coupons?"
 msgstr "Генерировать купоны?"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:371
+#: admin/partials/minter-yyy-cashback-admin-display.php:340
 msgid "Bip cost"
 msgstr "Стоимость BIP"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:391
+#: admin/partials/minter-yyy-cashback-admin-display.php:360
 msgid "PROJECT ID"
 msgstr "PROJECT ID"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:402
+#: admin/partials/minter-yyy-cashback-admin-display.php:371
 msgid "PROJECT SECRET"
 msgstr "PROJECT SECRET"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:409
+#: admin/partials/minter-yyy-cashback-admin-display.php:378
 msgid ""
 "more info how to get it on <a target=\"_blank\" href=\"https://funfasy.dev/"
 "\">https://funfasy.dev/</a>"
@@ -327,13 +331,16 @@ msgstr ""
 "пройди регистрацию на <a target=«_blank» href=«https://funfasy.dev/«>https://"
 "funfasy.dev/</a> и получи свои API ключи"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:424
+#: admin/partials/minter-yyy-cashback-admin-display.php:393
 msgid ""
 "\n"
 "                    <h1> Welcome To Minter YYY Cashback plugin! </h1>\n"
 "                    <h2>Description</h2>\n"
 "                        <p>Plugin created for <code> #MinterPush 0.2 – "
 "Rewards Hackathon–Subscriptions</code></p>\n"
+"                        <p>EVERY question about this plugin asked here <a "
+"href=\"https://t.me/mntshop_official_group\" rel=\"nofollow\">[Official "
+"Telegram group]</a> would be answered.</p>\n"
 "                        <p>Wordpress Plugin gives you the power of rewards "
 "your client! example for registration.\n"
 "                            Use FunFasy.dev to send minter transaction and "
@@ -431,6 +438,9 @@ msgstr ""
 "                    <h2>Описание</h2>\n"
 "                        <p>Плагин, созданный для <code> #MinterPush 0.2 – "
 "Rewards Hackathon–Subscriptions</code></p>\n"
+"                        <p>На все вопросы связанные с установкой или "
+"настройкой отвечаем в <a href=«https://t.me/mntshop_official_group» "
+"rel=«nofollow»>[Official Telegram group]</a> .</p>\n"
 "                        <p>Плагин Wordpress дает вам возможность "
 "вознаграждать вашего клиента/подписчика! Например при регистрации.\n"
 "                            Используется FunFasy.dev для отправки транзакции "
@@ -529,7 +539,7 @@ msgstr ""
 "просмотреть информацию обо всех созданных пушах)</li>\n"
 "                        </ul>\n"
 
-#: admin/partials/minter-yyy-cashback-admin-display.php:497
+#: admin/partials/minter-yyy-cashback-admin-display.php:467
 msgid "Save all changes"
 msgstr "Сохранить все изменения"
 
@@ -545,7 +555,7 @@ msgstr ""
 "потрать его!"
 
 #: includes/class-minter-yyy-cashback-activator.php:67
-#: includes/YYY_push.php:448
+#: includes/YYY_push.php:457
 msgid "Coupon with true money!"
 msgstr "Купон с настоящими деньгами!"
 

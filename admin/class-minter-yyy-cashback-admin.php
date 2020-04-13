@@ -250,10 +250,6 @@ class Minter_Yyy_Cashback_Admin {
     public function options_update() {
         register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
     }
-    //// Add Meta Boxes
-//    /**
-//     * Adds a metabox to the right side of the screen under the Publish box
-//     */
     public function myc_add_metabox() {
         add_meta_box(
             'myc_metabox',
@@ -262,16 +258,11 @@ class Minter_Yyy_Cashback_Admin {
         );
     }
     public function myc_screen($post, $meta ){
-        //get YYY.Push
         $YYY_Push = new YYY_push($post->ID);
 
-        // Используем nonce для верификации
         wp_nonce_field( plugin_basename(__FILE__), 'myc_metabox_noncename' );
-//        $options = get_option($this->plugin_name);
-        // значение поля
-//        $value1 = $YYY_Push->getCost();
 
-        // Поля формы для введения данных
+        // FORM FIELDS
         echo '<div class="section"><label for="'.$YYY_Push::getCostKey().'">' . __("Push cost", $this->plugin_name ) . '</label> ';
         echo '<input type="text" id="'.$YYY_Push::getCostKey().'" name="'.$YYY_Push::getCostKey().'" value="'. $YYY_Push->getCost() .'" size="25" /></div>';
         echo '<div class="section"><label for="'.$YYY_Push::getUserIdKey().'">' . __("User ID", $this->plugin_name ) . '</label> ';
@@ -300,7 +291,6 @@ class Minter_Yyy_Cashback_Admin {
         echo '<input type="text" id="'.$YYY_Push::getCouponSpendKey().'" name="'.$YYY_Push::getCouponSpendKey().'" value="'. $YYY_Push->isCouponSpend() .'" size="25" /></div>';
         echo '<div class="section"><label >' . __("Push URL: ", $this->plugin_name ) . '</label>  <a href="https://yyy.cash/push/'. $YYY_Push->getLinkId() .'">https://yyy.cash/push/'. $YYY_Push->getLinkId() .'</a>';
 
-//        }
     }
 
 
