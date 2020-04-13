@@ -25,6 +25,8 @@ Register at https://funfasy.dev/ and get your API keys and input your:
 `PROJECT ID`
 `PROJECT SECRET`
 
+![FunFasy setting screen](assets/screenshot-2.png)
+
 #### Minter Wallet Settings section ####
 >When you install a plugin that generates a new empty wallet to send rewards.
 
@@ -33,6 +35,8 @@ Input your ticker here. All generated rewards will be sent in that ticker.
 The balance would be displayed in the ticker 
 
 >Also in this section contain all information about wallet. Such as wallet mnemonic phrase, just copy and paste in your wallet app for example here [BIP Wallet](https://wallet.bip.to "BIP Wallet"). And you can administrate wallet your new wallet.
+
+![Minter Wallet setting screen](assets/screenshot-4.png)
 
 #### Reward events Settings section ####
 >In this section we have all predefined events like `Register on site `. You can customize it, but first, activate and some setup.
@@ -45,6 +49,10 @@ Available options:
 - Email notification settings (Customize Email notification such as from, template and some conditional message)
 
 >Feel free to use default settings like a template 
+
+![Rewards setting screen](assets/screenshot-5.png)
+
+
 #### Woocommerce Settings section ####
 
 >In this section store params for woocommerce.
@@ -53,6 +61,7 @@ Available options:
 - BIP cost ( First of all tell the plugin how many cost BIP in your local currency )
 - Coupon generate ( You can activate coupon generator. After activated all rewards will generate woocommerce coupons basically on BIP cost )
  
+![WooCommerce setting screen](assets/screenshot-3.png)
 
 ## Frequently Asked Questions ##
 
