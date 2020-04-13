@@ -4,6 +4,7 @@
 ## Description ##
 
 Plugin created for ` #MinterPush 0.2 – Rewards Hackathon–Subscriptions`
+EVERY question about this plugin asked here [Official Telegram group](https://t.me/mntshop_official_group "https://t.me/mntshop_official_group")  would be answered.
 
 Wordpress Plugin gives you the power of rewards your client! example for registration.
  Use FunFasy.dev to send minter transaction and YYY.cash to generate containers with money.
