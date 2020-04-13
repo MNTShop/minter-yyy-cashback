@@ -28,40 +28,9 @@
  * @subpackage Minter_Woocomerce_Coupon/admin/partials
  */
 
-//$YYY_push->setRecipient('ksenia.rodina94@gmail.com');
-//$YYY_push->setRecipient('gerka23@gmail.com');
-//$YYY_push->testEmail();
-//echo print_r($YYY_push->isEmailSend(),1);
-
-// This filter allows custom coupon objects to be created on the fly.
-//$coupon = apply_filters( 'woocommerce_get_shop_coupon_data', false, $data, $this );
-
 $options = get_option($this->plugin_name);
 $minter_helper = new FunFasy_helper();
 $balanceBipConverted=$minter_helper->getBalanceTicker(0,$options['ticker']);
-
-//$YYY_push = new YYY_push(13963);
-$user_id = get_current_user_id();
-$user_info = get_userdata($user_id);
-$YYY_push = new YYY_push();
-//$YYY_push
-//    ->setUserId($user_id)
-//    ->setRecipient($user_info->user_email)
-//    ->setSender(get_bloginfo())
-//    ->setCost($options['register_cost'])
-//    ->setTicker($options['ticker'])
-//    ->setBipPrice($options['bip_price'])
-//    ->setTitleAdmin('pay for register '.$user_info->user_email)
-//    ->setCustomizationSettingId(0);
-//$YYY_push->request_push();
-//$YYY_push->generate_coupon_for_push();
-//$minter_helper = new FunFasy_helper();
-//$minter_helper->pay_off_push($YYY_push);
-////$YYY_push->payOffCoupon();
-
-//error_log( $YYY_push->getLinkId());
-//error_log( print_r($YYY_push->getlinkInfo(),1));
-
 
 ?>
 
