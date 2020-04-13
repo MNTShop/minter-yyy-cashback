@@ -120,7 +120,7 @@ class YYY_push
             $this->bip_price = get_post_meta( $this->post_id, self::$bip_price_key, 1 );
             $this->email_send = get_post_meta( $this->post_id, self::$email_send_key, 1 );
             $this->coupon_spend = get_post_meta( $this->post_id, self::$coupon_spend_key, 1 );
-            $this->coupon_spend = get_post_meta( $this->post_id, self::$commission_key, 1 );
+            $this->commission = get_post_meta( $this->post_id, self::$commission_key, 1 );
         }else{
             $options = get_option($this->plugin_name);
             $this->ticker = false;
@@ -138,7 +138,7 @@ class YYY_push
             $this->bip_price = $options['bip_price'];
             $this->email_send = false;
             $this->coupon_spend = false;
-
+            $this->commission = 0;
         }
     }
 
@@ -502,9 +502,9 @@ class YYY_push
             $amount = $this->cost-$commission*$this->bip_price*$minter_helper->getTickerPriceBip($this->ticker);
          // Amount fixed in local currency
         }
-        error_log('getCost'.$this->cost);
-        error_log('generate_coupon_for_push getBipPrice'.$this->bip_price);
-        error_log('generate_coupon_for_push $minter_helper->getTickerPriceBip($this->$this->ticker'.$minter_helper->getTickerPriceBip($this->ticker));
+//        error_log('getCost'.$this->cost);
+        error_log('generate_coupon_for_push $amount '.$amount);
+//        error_log('generate_coupon_for_push $minter_helper->getTickerPriceBip($this->$this->ticker'.$minter_helper->getTickerPriceBip($this->ticker));
         $discount_type = 'fixed_cart'; // Type: fixed_cart, percent, fixed_product, percent_product
         $coupon = array(
             'post_title' => $coupon_code,
@@ -539,6 +539,24 @@ class YYY_push
     public function testEmail(){
         $this->send_e_mail_register_to_user();
     }
+
+    /**
+     * @return float
+     */
+    public function getCommission(): float
+    {
+        return $this->commission;
+    }
+
+    /**
+     * @param float $commission
+     */
+    public function setCommission(float $commission)
+    {
+        $this->commission = $commission;
+    }
+
+
     /*
      * Getters AND Setters section
      *

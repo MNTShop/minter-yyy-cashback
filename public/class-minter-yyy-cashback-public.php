@@ -185,8 +185,6 @@ class Minter_Yyy_Cashback_Public {
             }
         }
 
-       error_log('Coupon here '. $coupon->get_code());
-
     }
 
 }

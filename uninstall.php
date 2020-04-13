@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired when the plugin is uninstalled.
  *
@@ -24,9 +23,33 @@
  *
  * @package    Minter_Yyy_Cashback
  */
+global $wpdb;
 
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+$options = get_option('minter-yyy-cashback');
+//Save all generated pushes?
+// delete all pushes from database
+//if($options['uninstall_delete_minter-push']){
+    $query = "DELETE a,b,c
+        FROM wp_posts a
+        LEFT JOIN wp_term_relationships b
+            ON (a.ID = b.object_id)
+        LEFT JOIN wp_postmeta c
+            ON (a.ID = c.post_id)
+        WHERE a.post_type = 'minter-push'";
+    if($wpdb->query(
+        $query
+    )){
+        error_log('All posts with minter-push are deleted');
+    };
+//}
+
+// delete all options from database
+//Save options or not?
+//if($options['uninstall_delete_options']){
+    delete_option('minter-yyy-cashback');
+//}
 

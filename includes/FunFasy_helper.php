@@ -91,6 +91,9 @@ class FunFasy_helper
             ]);
             $transaction = $tx->sign($this->getMinterWalletPrivateKey());
             try {
+                $response_commission = $api->estimateTxCommission($tx);
+               error_log( print_r($response_commission,1));
+                $push->setCommission($response_commission->result->commission/1000000000000000000);
                 $response = $api->send($transaction);
                 $hash = $response->result->hash;
                 $push->setHash($hash);
