@@ -14,7 +14,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       minter-yyy-cashback
- * Plugin URI:        https://mntshop.ru
+ * Plugin URI:        https://github.com/MNTShop/minter-yyy-cashback
  * Description:       Plugin that give you power of rewards your client! example for registration. Use FunFasy.dev to send minter transaction and YYY.cash to generate containers with money.
  * Version:           1.0.0
  * Author:            Geman Vereschak
