@@ -328,8 +328,8 @@ msgid ""
 "more info how to get it on <a target=\"_blank\" href=\"https://funfasy.dev/"
 "\">https://funfasy.dev/</a>"
 msgstr ""
-"пройди регистрацию на <a target=«_blank» href=«https://funfasy.dev/«>https://"
-"funfasy.dev/</a> и получи свои API ключи"
+"пройди регистрацию на <a target=\"_blank\" href=\"https://funfasy.dev/\"> "
+"https://funfasy.dev/</a> и получи свои API ключи"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:393
 msgid ""
