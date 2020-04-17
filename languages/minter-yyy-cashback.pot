@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-04-13T22:42:21+00:00\n"
+"POT-Creation-Date: 2020-04-17T23:09:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 
@@ -18,8 +18,7 @@ msgid "minter-yyy-cashback"
 msgstr ""
 
 #. Plugin URI of the plugin
-#. Author URI of the plugin
-msgid "https://mntshop.ru"
+msgid "https://github.com/MNTShop/minter-yyy-cashback"
 msgstr ""
 
 #. Description of the plugin
@@ -30,6 +29,10 @@ msgstr ""
 msgid "Geman Vereschak"
 msgstr ""
 
+#. Author URI of the plugin
+msgid "https://mntshop.ru"
+msgstr ""
+
 #: admin/class-minter-yyy-cashback-admin.php:112
 msgid "Minter Push YYY.cash settings"
 msgstr ""
@@ -38,64 +41,64 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:260
+#: admin/class-minter-yyy-cashback-admin.php:256
 msgid "Minter YYY info"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:275
+#: admin/class-minter-yyy-cashback-admin.php:266
 msgid "Push cost"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:277
+#: admin/class-minter-yyy-cashback-admin.php:268
 msgid "User ID"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:279
+#: admin/class-minter-yyy-cashback-admin.php:270
 msgid "Recipient email"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:281
+#: admin/class-minter-yyy-cashback-admin.php:272
 msgid "Sender"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:283
+#: admin/class-minter-yyy-cashback-admin.php:274
 msgid "Password Push"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:285
+#: admin/class-minter-yyy-cashback-admin.php:276
 #: admin/partials/minter-yyy-cashback-admin-display.php:130
 msgid "Customization id"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:287
+#: admin/class-minter-yyy-cashback-admin.php:278
 msgid "Push link ID"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:289
+#: admin/class-minter-yyy-cashback-admin.php:280
 msgid "Minter push address"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:291
+#: admin/class-minter-yyy-cashback-admin.php:282
 msgid "Deep link push"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:293
+#: admin/class-minter-yyy-cashback-admin.php:284
 msgid "Hash add balance"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:295
+#: admin/class-minter-yyy-cashback-admin.php:286
 msgid "Email send?"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:297
+#: admin/class-minter-yyy-cashback-admin.php:288
 msgid "Push ticker"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:299
+#: admin/class-minter-yyy-cashback-admin.php:290
 msgid "Push pay off coupon"
 msgstr ""
 
-#: admin/class-minter-yyy-cashback-admin.php:301
+#: admin/class-minter-yyy-cashback-admin.php:292
 msgid "Push URL: "
 msgstr ""
 
@@ -373,7 +376,7 @@ msgid "Save all changes"
 msgstr ""
 
 #: includes/class-minter-yyy-cashback-activator.php:50
-msgid " дарит бонусы за регистрацию!"
+msgid " gives bonuses for registration!"
 msgstr ""
 
 #: includes/class-minter-yyy-cashback-activator.php:64

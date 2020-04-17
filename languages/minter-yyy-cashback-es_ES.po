@@ -1,21 +1,24 @@
+# Copyright (C) 2020 Geman Vereschak
+# This file is distributed under the same license as the minter-yyy-cashback plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: minter-yyy-cashback 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/minter-yyy-"
 "cashback\n"
 "POT-Creation-Date: 2020-04-17T23:09:00+00:00\n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2020-04-18 02:36+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: ru_RU\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. Plugin Name of the plugin
 msgid "minter-yyy-cashback"
-msgstr ""
+msgstr "minter-yyy-cashback"
 
 #. Plugin URI of the plugin
 msgid "https://github.com/MNTShop/minter-yyy-cashback"
@@ -27,91 +30,90 @@ msgid ""
 "Use FunFasy.dev to send minter transaction and YYY.cash to generate "
 "containers with money."
 msgstr ""
-"Плагин, который даст вам силу награждать ваших клиентов реальными деньгами! "
-"Например за регистрацию. Используем  FunFasy.dev для отправки Minter "
-"транзакций и YYY.cash для генерации пушей с bip."
+"Plugin que le dan el poder de recompensas a su cliente! ejemplo de registro. "
+"Utilice FunFasy.dev para enviar la transacción minter y YYY.cash para "
+"generar contenedores con dinero."
 
 #. Author of the plugin
 msgid "Geman Vereschak"
-msgstr "Герман Верещак"
+msgstr "Geman Vereschak"
 
 #. Author URI of the plugin
 msgid "https://mntshop.ru"
-msgstr ""
+msgstr "https://mntshop.ru"
 
-# Copyright (C) 2020 Geman Vereschak
 #: admin/class-minter-yyy-cashback-admin.php:112
 msgid "Minter Push YYY.cash settings"
-msgstr "Minter Push YYY.cash Настройки"
+msgstr "Minter Push YYY.cash ajustes"
 
 #: admin/class-minter-yyy-cashback-admin.php:131
 msgid "Settings"
-msgstr "Настройки"
+msgstr "Ajustes"
 
 #: admin/class-minter-yyy-cashback-admin.php:256
 msgid "Minter YYY info"
-msgstr "Minter YYY Информация"
+msgstr "Información de Minter YYY"
 
 #: admin/class-minter-yyy-cashback-admin.php:266
 msgid "Push cost"
-msgstr "Стоимость пуша"
+msgstr "Costo de Empuje"
 
 #: admin/class-minter-yyy-cashback-admin.php:268
 msgid "User ID"
-msgstr "User ID"
+msgstr "ID de usario"
 
 #: admin/class-minter-yyy-cashback-admin.php:270
 msgid "Recipient email"
-msgstr "Email получателя"
+msgstr "Receptor de E-mail"
 
 #: admin/class-minter-yyy-cashback-admin.php:272
 msgid "Sender"
-msgstr "Отправитель"
+msgstr "Remitente"
 
 #: admin/class-minter-yyy-cashback-admin.php:274
 msgid "Password Push"
-msgstr "Пароль пуша"
+msgstr "Contraseña Push"
 
 #: admin/class-minter-yyy-cashback-admin.php:276
 #: admin/partials/minter-yyy-cashback-admin-display.php:130
 msgid "Customization id"
-msgstr "Customization id"
+msgstr "Personalización de ID"
 
 #: admin/class-minter-yyy-cashback-admin.php:278
 msgid "Push link ID"
-msgstr "Push link ID"
+msgstr "Enlace de empuje ID"
 
 #: admin/class-minter-yyy-cashback-admin.php:280
 msgid "Minter push address"
-msgstr "Минтер адрес пуша"
+msgstr "Minter empuje de dirección"
 
 #: admin/class-minter-yyy-cashback-admin.php:282
 msgid "Deep link push"
-msgstr "Deep link push"
+msgstr "Enlace profundo de empuje"
 
 #: admin/class-minter-yyy-cashback-admin.php:284
 msgid "Hash add balance"
-msgstr "Hash пополнения баланса"
+msgstr "Hash agregando el saldo"
 
 #: admin/class-minter-yyy-cashback-admin.php:286
 msgid "Email send?"
-msgstr "Email отправлен?"
+msgstr "¿Enviar correo electrónico?"
 
 #: admin/class-minter-yyy-cashback-admin.php:288
 msgid "Push ticker"
-msgstr "Push тикер"
+msgstr "Push moneda"
 
 #: admin/class-minter-yyy-cashback-admin.php:290
 msgid "Push pay off coupon"
-msgstr "Купон обналичен?"
+msgstr "Push"
 
 #: admin/class-minter-yyy-cashback-admin.php:292
 msgid "Push URL: "
-msgstr ""
+msgstr "Push URL: "
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:54
 msgid "Welcome"
-msgstr "Добро пожаловать"
+msgstr "Bienvenidos"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:55
 msgid "FunFasy"
@@ -123,117 +125,117 @@ msgstr "Woocommerce"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:61
 msgid "Minter Wallet"
-msgstr "Minter Wallet"
+msgstr "Billetera"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:62
 msgid "Rewards"
-msgstr "Награды"
+msgstr "Recompensas"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:78
 msgid "Register on site"
-msgstr "Регистрация на сайте"
+msgstr "Registrarse en el sitio"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:84
 msgid "Active reward?"
-msgstr "Активировать награду?"
+msgstr "Activar la recompensa?"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:91
 #: admin/partials/minter-yyy-cashback-admin-display.php:105
 #: admin/partials/minter-yyy-cashback-admin-display.php:334
 msgid "Enabled"
-msgstr "Включено"
+msgstr "Habilitado"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:97
 msgid "Use password in push?"
-msgstr "Генерировать пароли для пушей?"
+msgstr "Usar contraseña en push?"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:108
 msgid "Impossible if active WooCommerce generate coupons"
-msgstr "Невозможно если активировано WooCommerce генерировать купоны"
+msgstr "Imposible si WooCommerce activo genera cupones"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:114
 msgid "How many coins do you want to reward?"
-msgstr "Сколько монет потратить на награду?"
+msgstr "¿Cuántas monedas quiere recompensar?"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:121
 msgid "In Minter Wallet section you can add custom ticker"
-msgstr "В секции Minter Wallet вы можете добавить свой тикер"
+msgstr "En la sección Billetera Minter  puede agregar  moneda personalizada"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:127
 msgid "Customization push settings"
-msgstr "Настройка кастомизации пушей"
+msgstr "Ajustes de personalización"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:137
 msgid "Animation type"
-msgstr "Тип анимации"
+msgstr "Tipo de animación"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:141
 msgid "Without animation"
-msgstr "Без анимации"
+msgstr "Sin animación"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:143
 msgid "Papper plane"
-msgstr "Бумажный самолёт"
+msgstr "Avión de papel"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:145
 msgid "Gift sending"
-msgstr "Получение подарка"
+msgstr "Envío de regalos"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:147
 msgid "Milos time"
-msgstr "Без комментариев"
+msgstr "Tiempo de Milos"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:150
 msgid "Head text push"
-msgstr "Подпись шапки пуша"
+msgstr "Titular push"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:157
 msgid "Animation text"
-msgstr "Текст анимации"
+msgstr "Texto de animación"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:165
 msgid "Background"
-msgstr "Фоновый цвет"
+msgstr "Antecedentes"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:168
 msgid "Standard"
-msgstr "Стандартный"
+msgstr "Estándar"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:169
 msgid "Black"
-msgstr "Черный"
+msgstr "Negro"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:170
 msgid "Purple"
-msgstr "Пурпурный"
+msgstr "Púrpura"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:171
 msgid "Beige"
-msgstr "Бежевый"
+msgstr "Beige"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:172
 msgid "Pink"
-msgstr "Розовый"
+msgstr "Rosa"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:173
 msgid "Blue"
-msgstr "Синий"
+msgstr "Azul"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:174
 msgid "Green"
-msgstr "Зеленый"
+msgstr "Verde"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:180
 msgid "E-mail notification"
-msgstr "E-mail уведомления"
+msgstr "Notificación de correo electrónico"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:185
 msgid "E-mail from"
-msgstr "E-mail От"
+msgstr "Сorreo electrónico de"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:193
 msgid "E-mail subject"
-msgstr "E-mail тема"
+msgstr "Sujeta de correo electrónico"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:202
 msgid "HTML E-mail #PASSWORD_MESSAGE#"
@@ -245,7 +247,7 @@ msgstr "HTML E-mail #COUPON_MESSAGE#"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:221
 msgid "HTML E-mail template"
-msgstr "HTML E-mail template"
+msgstr "HTML patrón de correo electrónico"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:227
 msgid ""
@@ -265,74 +267,73 @@ msgid ""
 "(Your default site name)\n"
 "                                "
 msgstr ""
-"Вы можете использовать переменные в своем шаблоне E-mail:<br>\n"
-"                                #COUPON_MESSAGE# - Если включили генерацию "
-"купонов, в секции WooCommerce, вы можете задать переменную шаблона чтобы "
-"сказать пользователем об этом<br>\n"
-"                                #PASSWORD_MESSAGE# - Если включили генерацию "
-"паролей в настройке награды, вы можете задать переменную шаблона чтобы "
-"сказать пользователем об этом<br>\n"
-"                                #PUSH_URL# - Сгенерированный адрес для "
-"открытия награды push url<br>\n"
-"                                #PUSH_LINK_ID# - Сгенерированный Link ID "
-"награды, также является купоном для woocommerce<br>\n"
-"                                #PUSH_PASSWORD# - Сгенерированный пароль для "
-"открытия награды<br>\n"
-"                                #SITE_NAME# -информация из get_bloginfo() "
-"(Имя вашего сайта)\n"
+"You can use template vars:<br>\n"
+"                                #COUPON_MESSAGE# - Si marca generar cupón, "
+"en la configuración de woocommerce, puede decírselo a sus clientes en un "
+"mensaje personalizado<br>\n"
+"                                #PASSWORD_MESSAGE# - Si marca generar "
+"contraseña push, también puede decírselo a sus clientes en un mensaje "
+"personalizado<br>\n"
+"                                #PUSH_URL# - Push url generada<br>\n"
+"                                #PUSH_LINK_ID# - El ID de enlace generado "
+"también genera un código de cupón para woocommerce<br>\n"
+"                                #PUSH_PASSWORD# - Contraseña push "
+"generada<br>\n"
+"                                #SITE_NAME# - devuelto por get_bloginfo() "
+"(Su nombre de sitio predeterminado)\n"
 "                                "
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:249
 msgid "Wallet ticker"
-msgstr "Тикер кошелька"
+msgstr "Moneda de billetera"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:256
 msgid "Which coin use for pushes? example BIP"
-msgstr "Какой тикер использовать для отправки пушей? Например BIP"
+msgstr "¿Qué moneda usa para empujar? ejemplo BIP"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:262
 msgid "Addres which send Push for clients"
-msgstr "Адрес, который отправляет пуши"
+msgstr "Dirección que envía Push para clientes"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:273
 msgid "Minter wallet mnemonic"
-msgstr "Minter мнемоническая фраза"
+msgstr "Billetera de Minter mnemotécnica"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:283
 msgid "Minter wallet public key"
-msgstr "Minter публичный ключ кошелька"
+msgstr "Minter billetera clave pública"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:293
 msgid "Minter wallet private key"
-msgstr "Minter приватный ключ кошелька"
+msgstr "Minter billetera clave privada"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:303
 msgid "Minter Wallet seed"
-msgstr "Minter seed кошелька"
+msgstr "Billetera Minter seed"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:328
 msgid "Use Coupons?"
-msgstr "Генерировать купоны?"
+msgstr "Usar Cupones?"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:340
 msgid "Bip cost"
-msgstr "Стоимость BIP"
+msgstr "Costo de BIP"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:360
 msgid "PROJECT ID"
-msgstr "PROJECT ID"
+msgstr "PROJECTO ID"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:371
 msgid "PROJECT SECRET"
-msgstr "PROJECT SECRET"
+msgstr "SECRETO DEL PROYECTO"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:378
 msgid ""
 "more info how to get it on <a target=\"_blank\" href=\"https://funfasy.dev/"
 "\">https://funfasy.dev/</a>"
 msgstr ""
-"пройди регистрацию на <a target=\"_blank\" href=\"https://funfasy.dev/\"> "
-"https://funfasy.dev/</a> и получи свои API ключи"
+"más información sobre cómo obtenerlo <a target=«_blank» href=«https://"
+"funfasy.dev/«>https://funfasy.dev/</a>"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:393
 msgid ""
@@ -436,164 +437,136 @@ msgid ""
 "                        </ul>\n"
 msgstr ""
 "\n"
-"                    <h1> Добро пожаловать в Minter YYY Cashback плагин! </"
-"h1>\n"
-"                    <h2>Описание</h2>\n"
-"                        <p>Плагин, созданный для <code> #MinterPush 0.2 – "
-"Rewards Hackathon–Subscriptions</code></p>\n"
-"                        <p>На все вопросы связанные с установкой или "
-"настройкой отвечаем в <a href=«https://t.me/mntshop_official_group» "
-"rel=«nofollow»>[Official Telegram group]</a> .</p>\n"
-"                        <p>Плагин Wordpress дает вам возможность "
-"вознаграждать вашего клиента/подписчика! Например при регистрации.\n"
-"                            Используется FunFasy.dev для отправки транзакции "
-"и YYY.cash для создания контейнеров с деньгами.</p>\n"
-"                            <p>Ниже инструкция по базовым настройкам</p>\n"
-"                        <h3>Настройки плагина</h3>\n"
-"                        <h4>FUNFASY раздел настроек</h4>\n"
-"                        <p>Сначала зарегистрируйтесь <a href=«https://"
-"funfasy.dev/« rel=«nofollow»>https://funfasy.dev/</a> и получите ваши API "
-"ключи и введите их:\n"
-"                            <code>PROJECT ID</code>\n"
-"                            <code>PROJECT SECRET</code></p>\n"
-"                        <h4>Minter Wallet раздел настроек</h4>\n"
-"                        <blockquote>\n"
-"                            <p>При установке плагина, генерируется новый "
-"пустой кошелек для отправки наград.</p>\n"
-"                        </blockquote>\n"
-"                        <p>Вставьте свой тикер монеты или просто BIP. Все "
-"сгенерированные награды будут отправлены в этом тикере.</p>\n"
-"                        <p>Баланс также отразится в указанном тикере</p>\n"
-"                        <blockquote>\n"
-"                            <p>Также данная секция настроек содержит "
-"информацию о вашем кошельке.\n"
-"Такую как, например, мнемоническую фразу, вы можете просто скопировать и "
-"вставить её в ваш кошелек например здесь <a href=«https://wallet.bip.to» "
-"title=«BIP Wallet» rel=«nofollow»>BIP Wallet</a>. И вы сможете "
-"администрировать ваш кошелек.</p>\n"
-"                        </blockquote>\n"
-"                        <h4 >Награды раздел настроек</h4>\n"
-"                        <blockquote>\n"
-"                            <p>В данном разделе настроек хранятся все "
-"стандартные события наград например <code>Регистрация на сайте</code>. Вы "
-"можете их кастомизировать, но сначала, проведите настройку и активируйте.</"
+"                    <h1> Bienvenidos A Minter YYY Devolución de dinero "
+"plugin! </h1>\n"
+"                    <h2>Descripción</h2>\n"
+"                        <p>Plugin creado para <code> #MinterPush 0.2 – "
+"Recompensas Hackathon – Suscripciones</code></p>\n"
+"                        <p>CADA pregunta sobre este complemento se hace aquí "
+"<a href=«https://t.me/mntshop_official_group» rel=«nofollow»>[Official "
+"Telegram group]</a> Sería respondido.</p>\n"
+"                        <p>Wordpress Plugin te da el poder de recompensas a "
+"tu cliente! Ejemplo de registro.\n"
+"                            Usa FunFasy.dev para enviar minter transacción y "
+"YYY.cash para generar contenedores con dinero.</p>\n"
+"                            <p>Lanzar junto a la configuración de tutorial</"
 "p>\n"
+"                        <h3>En ajustes de plugin</h3>\n"
+"                        <h4>FUNFASY Sección de configuración</h4>\n"
+"                        <p>Registrarse en <a href=«https://funfasy.dev/« "
+"rel=«nofollow»>https://funfasy.dev/</a> y obtenga sus claves API e ingrese "
+"su:\n"
+"                            <code>PROJECTO ID</code>\n"
+"                            <code>PROJECTO SECRETO</code></p>\n"
+"                        <h4>Sección Configuración de Billetera Minter</h4>\n"
+"                        <blockquote>\n"
+"                            <p>Cuando instala un complemento que genera una "
+"nueva billetera vacía para enviar recompensas.</p>\n"
 "                        </blockquote>\n"
-"                        <p>Доступные опции:</p>\n"
+"                        <p>Ingrese su moneda aquí. Todas las recompensas "
+"generadas se enviarán en esa moneda.</p>\n"
+"                        <p>El saldo se mostraría en la moneda.</p>\n"
+"                        <blockquote>\n"
+"                            <p>También en esta sección contiene toda la "
+"información sobre billetera. Como la frase mnemónica de billetera, "
+"simplemente copie y pegue en su aplicación de billetera, por ejemplo aquí <a "
+"href=«https://wallet.bip.to» title=«BIP Wallet» rel=«nofollow»>BIP Wallet</"
+"a>. Y puede administrar su billetera nueva billetera.</p>\n"
+"                        </blockquote>\n"
+"                        <h4 >Sección de configuración de recompensas</h4>\n"
+"                        <blockquote>\n"
+"                            <p>En esta sección tenemos todos los eventos "
+"predefinidos como <code>Registrarse en el sitio </code>. Puede "
+"personalizarlo, pero primero, activarlo y configurarlo.</p>\n"
+"                        </blockquote>\n"
+"                        <p>Opciones Disponibles:</p>\n"
 "                        <ul>\n"
-"                            <li>Активировать награду? (Активирует награду)</"
-"li>\n"
-"                            <li>Генерировать пароли для пушей? (Генерирует "
-"пароли для каждого пуша этого типа)</li>\n"
-"                            <li>Сколько монет потратить на награду? (Сколько "
-"стоит ваша награда в выбранном тикер)</li>\n"
-"                            <li>Настройка кастомизации пушей (Кастомизируйте "
-"отправляемую награду)</li>\n"
-"                            <li>Email уведомления (Настройки Email "
-"уведомлений, таких как От кого, или шаблон)</li>\n"
+"                            <li>Activo (activar recompensa)</li>\n"
+"                            <li>Generar contraseña (si desea generar una "
+"contraseña aleatoria para la recompensa)</li>\n"
+"                            <li>¿Cuántas monedas quiere recompensar? "
+"(cuántas monedas se enviarán para esta recompensa)</li>\n"
+"                            <li>Configuración de inserción de "
+"personalización (Personalizar recompensa)</li>\n"
+"                            <li>Configuración de notificaciones por correo "
+"electrónico (Personalizar notificaciones por correo electrónico como de, "
+"plantilla y algún mensaje condicional)</li>\n"
 "                        </ul>\n"
 "                        <blockquote>\n"
-"                            <p>Можете использовать предустановленные "
-"значения. Протестируйте награду создав тестового пользователя на сайте.</p>\n"
+"                            <p>Siéntase libre de usar la configuración "
+"predeterminada como una plantilla</p>\n"
 "                        </blockquote>\n"
-"                        <h4>Woocommerce раздел настроек</h4>\n"
+"                        <h4>Sección de configuración de Woocommerce</h4>\n"
 "                        <blockquote>\n"
-"                            <p>Здесь хранится параметры относящиеся к "
-"WooCommerce </p>\n"
+"                            <p>En esta sección, guarde los parámetros para "
+"woocommerce.</p>\n"
 "                        </blockquote>\n"
-"                        <p>Доступные опции:</p>\n"
+"                        <p>Opciones Disponibles:</p>\n"
 "                        <ul>\n"
-"                            <li>Стоимость BIP( Для начала скажите плагину "
-"сколько стоит BIP в вашей валюте )</li>\n"
-"                            <li>Генерировать купоны? ( Вы можете "
-"активировать генератор купонов. После активации все награды будут "
-"генерировать купоны WooCommerce основываясь на стоимости BIP )</li>\n"
+"                            <li>Precio BIP (en primer lugar, dígale al "
+"complemento cuántos cuestan BIP en su moneda local)</li>\n"
+"                            <li>Coupon generate ( You can activate coupon "
+"generator. After activated all rewards will generate woocommerce coupons "
+"basically on BIP cost )</li>\n"
 "                        </ul>\n"
-"                        <h2>Часто задаваемые вопросы</h2>\n"
-"                        <h3>Какие сервисы использует плагин?</h3>\n"
-"                        <p>Мы используем:</p>\n"
+"                        <h2>Preguntas frecuentes</h2>\n"
+"                        <h3>¿Qué servicios utilizas?</h3>\n"
+"                        <p>Nosotros usamos:</p>\n"
 "                        <ul>\n"
-"                            <li>FunFasy API для подключения к Minter "
-"Blockchain, здесь больше информации <a href=«https://funfasy.dev/« "
+"                            <li>API de FunFasy para conectar Minter "
+"Blockchain aquí más información <a href=«https://funfasy.dev/« "
 "title=«https://funfasy.dev/« rel=«nofollow»>FunFasy</a></li>\n"
-"                            <li>YYY.cash API для генерирования контейнеров с "
-"деньгами, здесь больше информации  <a href=«https://push.money/swagger» "
+"                            <li>YYY.cash api para generar contenedores con "
+"dinero aquí más información <a href=«https://push.money/swagger» "
 "title=«https://push.money/swagger» rel=«nofollow»>YYY.cash</a></li>\n"
 "                        </ul>\n"
-"                        <h3></a>Что насчет WooCommerce?</h3>\n"
-"                        <p>\n"
-" На данный момент, вы можете создавать купоны вместе с наградами соды "
-"создаются из push #LINK_ID#, также вы можете задать свою цену за BIP "
-"(Стандартный тикер Minter Blockchain)\n"
-"                           Это означает, что когда создается пушицы "
-"WooCommerce генерирует купон с фиксированной скидкой стоимости награды \n"
-"                        <h2>История изменений</h2>\n"
+"                        <h3></a>¿Qué pasa con woocommerce?</h3>\n"
+"                        <p>Actualmente, puede crear un cupón con minter push "
+"id y también agregar su precio para BIP.\n"
+"                            Eso significa que cuando push crea woocommerce, "
+"genera un cupón con un descuento fijo con la cantidad en un push.</p>\n"
+"                        <h2>Changelog</h2>\n"
 "                        <h3>1.0</h3>\n"
 "                        <ul>\n"
-"                            <li>Добавлен язык: Русский.</li>\n"
-"                            <li>Добавлена поддержка генерирования купонов.</"
-"li>\n"
-"                            <li>Добавлен FunFasy_helper (для отправки "
-"транзакций) .</li>\n"
-"                            <li>Добавлен объект YYY_push (объект в котором "
-"находятся все методы и свойства для работы с пушами).</li>\n"
-"                            <li>Добавлена админка.</li>\n"
-"                            <li>Новый Post type: minter-push. (Можно "
-"просмотреть информацию обо всех созданных пушах)</li>\n"
+"                            <li>Añadir idioma: Ruso.</li>\n"
+"                            <li>Añadir soporte para generar cupones.</li>\n"
+"                            <li>Añadir FunFasy_ayudante (enviar "
+"transacción) .</li>\n"
+"                            <li>Añadir YYY_push (el objeto que tiene toda la "
+"información sobre el empuje y el trabajo con él.).</li>\n"
+"                            <li>Añadir Interfaz de administrador.</li>\n"
+"                            <li>Añadir Nuevo tipo de publicación: minter-"
+"push. (Puede ver todos los empujes generados)</li>\n"
 "                        </ul>\n"
 
 #: admin/partials/minter-yyy-cashback-admin-display.php:467
 msgid "Save all changes"
-msgstr "Сохранить все изменения"
+msgstr "Guarda todos los cambios"
 
 #: includes/class-minter-yyy-cashback-activator.php:50
 msgid " gives bonuses for registration!"
-msgstr " Дарит бонусы за регистрацию!"
+msgstr " da bonificaciones por el registro!"
 
 #: includes/class-minter-yyy-cashback-activator.php:64
 msgid "We have a present for you! Check this out and spend it!"
-msgstr ""
-"Мы подготовили подарок, всем кто регистрируется на нашем сайте, и это не "
-"просто купон, это контейнер с настоящими деньгами! Проходи по ссылке и "
-"потрать его!"
+msgstr "¡Tenemos un regalo para ti! ¡Mira esto y gástalo!"
 
 #: includes/class-minter-yyy-cashback-activator.php:67
 #: includes/YYY_push.php:457
 msgid "Coupon with true money!"
-msgstr "Купон с настоящими деньгами!"
+msgstr "Cupón de dinero real!"
 
 #: includes/class-minter-yyy-cashback-activator.php:69
 msgid ""
 "Or you can fill on checkout and get discount! <b> coupon code: "
 "#PUSH_LINK_ID# </b>"
 msgstr ""
-"Также, вы сможете погасить подарок на нашем сайте, использовав <b> КУПОН: "
+"¡O puede completar el pago y obtener un descuento! <b> coupon code: "
 "#PUSH_LINK_ID# </b>"
 
 #: includes/class-minter-yyy-cashback-activator.php:70
 msgid "To open fill  <b> password: #PUSH_PASSWORD# </b> "
-msgstr "Для открытия пуша вам понадобится <b> пароль : #PUSH_PASSWORD# </b> "
+msgstr "Para abrir complete <b> password: #PUSH_PASSWORD# </b> "
 
 #~ msgid " дарит бонусы за регистрацию!"
-#~ msgstr " Дарит бонусы за регистрацию!"
-
-#~ msgid "Bip price in local currency"
-#~ msgstr "Стоимость BIP в вашей валюте"
-
-#~ msgid "Welcome To Minter YYY Cashback plugin!"
-#~ msgstr "Добро пожаловать в Minter YYY Cashback плагин!"
-
-#~ msgid "Push wallet info"
-#~ msgstr "Кошелек для отправки пушей"
-
-#~ msgid "Pay for register"
-#~ msgstr "Плата за регистрацию"
-
-#~ msgid "Pay for registration clients in ticker"
-#~ msgstr "Стоимость регистрации"
-
-#~ msgid "if empty generate new customization"
-#~ msgstr "если пусто создаст новую конфигурацию"
-
-#~ msgid "FunFasy account information"
-#~ msgstr "FunFasy информация"
+#~ msgstr "da bonificaciones por el registro!"

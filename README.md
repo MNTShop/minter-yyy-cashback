@@ -72,6 +72,14 @@ We use:
  * FunFasy api to connect Minter Blockchain here more info [FunFasy](https://funfasy.dev/ "https://funfasy.dev/")
  * YYY.cash api to generate containers with money here more info [YYY.cash](https://push.money/swagger "https://push.money/swagger")
 
+### Where can i buy bip? ###
+
+We have many exchanges my top is :
+1. https://bip.dev
+2. https://t.me/BIP_Banker_bot
+3. https://minter.1001btc.com/
+
+
 ### What about woocomerce? ###
 
 Currently, you can create cupon with minter push id and also add your price for BIP.
@@ -81,7 +89,7 @@ Currently, you can create cupon with minter push id and also add your price for 
 ## Changelog ##
 
 ### 1.0 ###
-* Add language: Russian.
+* Add language: Russian,Spanish
 * Add support to generate coupons. 
 * Add FunFasy_helper (send transaction) .
 * Add YYY_push (the object that has all info about the push and working with it).

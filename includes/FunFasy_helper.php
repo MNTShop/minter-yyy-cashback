@@ -171,27 +171,57 @@ class FunFasy_helper
         }
     }
 
+
+    /** Check transaction execution error in blockchain 
+     *
+     * @param string $tx
+     * @return bool
+     */
+    public function isErrorTransaction(string $tx):bool
+    {
+        $isError = false;
+        try{
+            sleep(5);
+            $api = new MinterAPI($this->client);
+            $response = $api->getTransactions($tx);
+            if(isset($response->result->code) && !empty($response->result->code)){
+                $isError = true;
+                error_log( ' Transaction in blockchain with error hash tx: '.$tx  );
+
+            }
+        }catch(RequestException $exception) {
+            // handle error
+            $content = $exception->getResponse()
+                ->getBody()
+                ->getContents();
+            // error response as array
+            $error = json_decode($content, true);
+            error_log( ' cant getTransaction: '.print_r($error, 1)  );
+            $isError = true;
+        }
+        return $isError;
+
+    }
+
     public function getCommission(YYY_push $push){
-        $api = new MinterAPI($this->client);
-        $tx = new MinterTx([
-            'nonce' => $api->getNonce($this->getMinterWalletAddress()),
-            'chainId' => MinterTx::MAINNET_CHAIN_ID,
-            'gasPrice' => 1,
-            'gasCoin' => $push->getTicker(),
-            'type' => MinterSendCoinTx::TYPE,
-            'data' => [
-                'coin' => $push->getTicker(),
-                'to' => $push->getAddress(),
-                'value' => $push->getCost()
-            ],
-            'payload' => '',
-            'serviceData' => '',
-            'signatureType' => MinterTx::SIGNATURE_SINGLE_TYPE
-        ]);
-        $transaction = $tx->sign($this->getMinterWalletPrivateKey());
         try {
             $api = new MinterAPI($this->client);
-
+            $tx = new MinterTx([
+                'nonce' => $api->getNonce($this->getMinterWalletAddress()),
+                'chainId' => MinterTx::MAINNET_CHAIN_ID,
+                'gasPrice' => 1,
+                'gasCoin' => $push->getTicker(),
+                'type' => MinterSendCoinTx::TYPE,
+                'data' => [
+                    'coin' => $push->getTicker(),
+                    'to' => $push->getAddress(),
+                    'value' => $push->getCost()
+                ],
+                'payload' => '',
+                'serviceData' => '',
+                'signatureType' => MinterTx::SIGNATURE_SINGLE_TYPE
+            ]);
+            $transaction = $tx->sign($this->getMinterWalletPrivateKey());
             $response = $api->estimateTxCommission($transaction);
             $commission = $response->result->commission;
             return $commission/1000000000000000000;

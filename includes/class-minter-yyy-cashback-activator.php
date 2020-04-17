@@ -47,7 +47,7 @@ class Minter_Yyy_Cashback_Activator {
         if(!isset($options['bip_price'])){$options['bip_price'] = 2.2;}
         //default customization
         if(!isset($options['register_animation_name'])){$options['register_animation_name'] = 2;}
-        if(!isset($options['register_animation_text'])){$options['register_animation_text'] = get_bloginfo().__(' дарит бонусы за регистрацию!','minter-yyy-cashback');}
+        if(!isset($options['register_animation_text'])){$options['register_animation_text'] = get_bloginfo().__(' gives bonuses for registration!','minter-yyy-cashback');}
         if(!isset($options['register_background_name'])){$options['register_background_name'] = 'black';}
         if(!isset($options['register_head_text'])){$options['register_head_text'] = get_bloginfo();}
         if(!isset($options['register_customization_id'])){
