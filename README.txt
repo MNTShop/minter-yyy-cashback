@@ -67,6 +67,11 @@ throw to the description section to find more tips.
 
 == Frequently Asked Questions ==
 
+= How to protect from spammers? =
+
+When we talk about money rewards many spammers want to get your marketing budget.
+ You can protect your site from bad activity if install for example [Stop Spammers](https://wordpress.org/plugins/stop-spammer-registrations-plugin/ "https://wordpress.org/plugins/stop-spammer-registrations-plugin/")
+
 = Which services do you use? =
 
 We use:
@@ -89,7 +94,7 @@ Currently, you can create cupon with minter push id and also add your price for 
 == Changelog ==
 
 = 1.0 =
-* Add language: Russian.
+* Add language: Russian, Spanish
 * Add support to generate coupons.
 * Add FunFasy_helper (send transaction) .
 * Add YYY_push (the object that has all info about the push and working with it).

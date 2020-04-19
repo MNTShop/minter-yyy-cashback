@@ -66,13 +66,18 @@ Available options:
 
 ## Frequently Asked Questions ##
 
+### How to protect from spammers? ###
+
+When we talk about money rewards many spammers want to get your marketing budget.
+ You can protect your site from bad activity if install for example [Stop Spammers](https://wordpress.org/plugins/stop-spammer-registrations-plugin/ "https://wordpress.org/plugins/stop-spammer-registrations-plugin/")
+
 ### Which services do you use? ###
 
 We use:
  * FunFasy api to connect Minter Blockchain here more info [FunFasy](https://funfasy.dev/ "https://funfasy.dev/")
  * YYY.cash api to generate containers with money here more info [YYY.cash](https://push.money/swagger "https://push.money/swagger")
 
-### Where can i buy bip? ###
+### Where can i buy BIP? ###
 
 We have many exchanges my top is :
 1. https://bip.dev

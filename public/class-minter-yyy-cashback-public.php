@@ -118,18 +118,24 @@ class Minter_Yyy_Cashback_Public {
         }if($options['register_customization_id']){
             $YYY_push->setCustomizationSettingId( $options['register_customization_id']);
         }
-        $YYY_push->request_push();
-        $minter_helper = new FunFasy_helper();
-            if($minter_helper->pay_off_push($YYY_push)!==false){
-                if($options['woocommerce_generate_coupons']){
-                    $YYY_push->generate_coupon_for_push();
-                }
-                if(false===$YYY_push->sendEmail('register')){
-                    error_log('Email with minter push are Not send '.$YYY_push->getTitleAdmin());
-                }
-            }else{
-                error_log('Push not added balance  '.$YYY_push->getTitleAdmin());
-            }
+        $YYY_push->save();
+       if( $YYY_push->request_push()){
+           $minter_helper = new FunFasy_helper();
+           if($minter_helper->pay_off_push($YYY_push)!==false){
+               if($options['woocommerce_generate_coupons']){
+                   $YYY_push->generate_coupon_for_push();
+               }
+               if(false===$YYY_push->sendEmail('register')){
+                   error_log('Email with minter push are Not send '.$YYY_push->getTitleAdmin());
+                   //try more
+               }
+           }else{
+               error_log('Push not added balance  '.$YYY_push->getTitleAdmin());
+           }
+       }else{
+           error_log('YYY.cash not created push');
+       }
+
 
     }
 

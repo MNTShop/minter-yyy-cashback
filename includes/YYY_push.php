@@ -176,7 +176,7 @@ class YYY_push
 
     }
 
-    public function request_push($tries=0){
+    public function request_push($tries=3){
         $newPush = [
             "amount"=> $this->cost,
             "recipient"=> $this->recipient,
@@ -188,7 +188,7 @@ class YYY_push
             $newPush['password']=$this->password;
         }
         try {
-            $responseNewPush = $this->getClient()->post('https://push.money/api/push/create',[
+            $responseNewPush = $this->client->post('https://push.money/api/push/create',[
                 GuzzleHttp\RequestOptions::JSON => $newPush // or 'json' => [...]
             ]);
             if($responseNewPush->getStatusCode() ==200) {
@@ -210,7 +210,8 @@ class YYY_push
                 ->getContents();
 
             $error = json_decode($content, true);
-            error_log('Can not create push for user '.print_r($error,1));
+            error_log('Can not create push for user '.print_r($exception->getResponse(),1));
+            error_log(print_r($newPush,1));
             if($tries == 3){
                 return false;
             }else{
@@ -420,13 +421,22 @@ class YYY_push
         }
 
     }
-    public function sendEmail($emailType=''){
+    public function sendEmail($emailType='',$tries=1){
         switch ($emailType) {
             case 'register':
                 if(!empty($this->user_id) && !empty($this->link_id)){
                 if($this->send_e_mail_register_to_user()){
                     $this->setEmailSend(true);
                     $this->save();
+                    return true;
+                }else{
+                    if($tries!==2){
+                        $tries = $tries+1;
+                        $this->sendEmail('register',$tries);
+                    }else{
+                        return false;
+                    }
+
                 }
             }
                 break;
@@ -453,7 +463,7 @@ class YYY_push
 
         add_filter( 'wp_mail_content_type',[$this,'wps_set_content_type'] );
 
-        $headers = "From: " . $options['register_email_from'] . "\r\n";
+//        $headers = "From: " . $options['register_email_from'] . "\r\n";
         $subject = __('Coupon with true money!', $this->plugin_name);
         $htmlMessage = $options['register_email_template'];
         //Search and replace
@@ -485,10 +495,17 @@ class YYY_push
 
         $htmlMessage = str_replace($search, $replace, $htmlMessage);
 
+        $headers = "";
+        $headers .= "From: ".$options['register_email_from']." <".$options['register_email_from']."> \r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
         //send to user
         $status = wp_mail($recipient, $subject, $htmlMessage, $headers);
         return $status;
     }
+
+
 
     public function generate_coupon_for_push(){
         //create coupon for variation product

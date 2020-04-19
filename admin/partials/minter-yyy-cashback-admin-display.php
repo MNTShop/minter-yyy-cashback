@@ -14,6 +14,7 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+
 <?php
 
 /**
@@ -31,6 +32,7 @@
 $options = get_option($this->plugin_name);
 $minter_helper = new FunFasy_helper();
 $balanceBipConverted=$minter_helper->getBalanceTicker(0,$options['ticker']);
+
 
 ?>
 

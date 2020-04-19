@@ -20,9 +20,9 @@ class FunFasy_helper
      * @access   protected
      * @var      string    $plugin_name    The string used to uniquely identify this plugin.
      */
-    private $plugin_name;
-    private $node_address = 'https://mnt.funfasy.dev/';
-    private $client;
+    protected $plugin_name;
+    protected $node_address = 'https://mnt.funfasy.dev/';
+    protected $client;
 
     protected $minter_wallet_address;
     protected $minter_wallet_private_key;
@@ -61,7 +61,7 @@ class FunFasy_helper
 
     }
 
-    public function pay_off_push(YYY_push $push, $tries=0){
+    public function pay_off_push(YYY_push $push, $tries=3){
         if (empty($push->getHash())){
             $options = get_option($this->plugin_name);
             $api = new MinterAPI($this->client);
@@ -112,7 +112,7 @@ class FunFasy_helper
         }
     }
 
-    public function getBalanceBip($address=0,$tries=0){
+    public function getBalanceBip($address=0,$tries=3){
         if($address === 0) {
             $address = $this->getMinterWalletAddress();
         }
@@ -141,7 +141,7 @@ class FunFasy_helper
 
         }
     }
-    public function getBalanceTicker($address=0,$ticker='BIP',$tries=0){
+    public function getBalanceTicker($address=0,$ticker='BIP',$tries=3){
         if($address === 0) {
             $address = $this->getMinterWalletAddress();
         }
@@ -172,7 +172,7 @@ class FunFasy_helper
     }
 
 
-    /** Check transaction execution error in blockchain 
+    /** Check transaction execution error in blockchain
      *
      * @param string $tx
      * @return bool
