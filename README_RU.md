@@ -7,7 +7,7 @@ ___wordpress plugin___
 Плагин, созданный для  ` #MinterPush 0.2 – Rewards Hackathon–Subscriptions`
 На все вопросы связанные с установкой или настройкой отвечаем 👉 [Official Telegram group](https://t.me/mntshop_official_group "https://t.me/mntshop_official_group") .
 Видео инструкция - [YouTube](https://youtu.be/LLKS-lxTZTs)
-Подпишись на [канал](https://telegram.me/unu_push_bot?start=84) получи MNTSHOP
+Telegram [канал](https://t.me/mntshop_official)
 
 ## Описание ##
 
