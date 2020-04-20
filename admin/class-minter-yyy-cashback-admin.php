@@ -340,13 +340,13 @@ class Minter_Yyy_Cashback_Admin {
             }
             $YYY_push = new YYY_push();
             $YYY_push
-                ->setUserId(278)
-                ->setRecipient('gerka2345@yandex.com')
+                ->setUserId($user_id->ID)
+                ->setRecipient('$user_email')
                 ->setSender(get_bloginfo())
                 ->setCost($cost_per_user)
                 ->setTicker($options['ticker'])
                 ->setBipPrice($options['bip_price'])
-                ->setTitleAdmin('pay for register '.'gerka2345@yandex.com');
+                ->setTitleAdmin('pay for register '.'$user_email');
             if($options['register_use_password']){
                 $YYY_push->setPassword(bin2hex(random_bytes(3)));
             }if($options['register_customization_id']){
