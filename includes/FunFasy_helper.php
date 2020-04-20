@@ -142,11 +142,11 @@ class FunFasy_helper
         }
     }
     public function getBalanceTicker($address=0,$ticker='BIP',$tries=3){
-        if($address === 0) {
+        try { if($address === 0) {
             $address = $this->getMinterWalletAddress();
         }
         $api = new MinterAPI($this->client);
-        try {
+
             $response = $api->getBalance($address);
             $balance = $response->result->balance->$ticker;
             return $balance/1000000000000000000;

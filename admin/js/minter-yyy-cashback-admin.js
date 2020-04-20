@@ -19,17 +19,46 @@ jQuery( function($){
 
         setUserSetting('myc_panels_setting_tab', tabClicked);
     });
+    //myc-settings-reward-sections
+    $('.settings-nav-rewards li a').click(function(e){
+        e.preventDefault();
+        var $$ = $(this);
+        $('.settings-nav-rewards li a').not($$).closest('li').removeClass('active');
+        $$.closest('li').addClass('active');
+
+        var tabClicked = $$.attr('href').split('#')[1];
+        var $s = $('#myc-settings-section-' + tabClicked);
+
+        $('#myc-settings-reward-sections .myc-settings-section').not($s).hide();
+        $s.show();
+
+        $('#myc-settings-page input[type="submit"]').css({
+            'visibility' : tabClicked === 'welcome' ? 'hidden' : 'visible'
+        });
+
+        setUserSetting('myc_panels_setting_tab', tabClicked);
+    });
+
 
 
     if( window.location.hash ) {
+        $('.settings-nav-rewards li a[href="' + window.location.hash + '"]').click();
+    }
+    if( window.location.hash ) {
         $('.settings-nav li a[href="' + window.location.hash + '"]').click();
     }
+    console.log(window.location.hash);
 
     // Save the tab the user last clicked
 
     var tabClicked = getUserSetting('myc_panels_setting_tab');
     if(tabClicked === '') { $('.settings-nav li a').first().click(); }
-    else { $('.settings-nav li a[href="#' + tabClicked + '"]').first().click(); }
+    else {
+        if(tabClicked === 'reward_schedule_section'||tabClicked === 'reward_register_section'){
+            $('.settings-nav li a[href="#' + 'reward_section' + '"]').first().click();
+            $('.settings-nav-rewards li a[href="#' + tabClicked + '"]').first().click();
+        }
+        $('.settings-nav li a[href="#' + tabClicked + '"]').first().click();}
 
     // Search settings
 
@@ -37,6 +66,7 @@ jQuery( function($){
 
         // Click on the correct container
         $('.settings-nav li a[href="#' + $s.closest('.myc-settings-section').data('section') + '"]').first().click();
+        $('.settings-nav-rewards li a[href="#' + $s.closest('.myc-settings-section').data('section') + '"]').first().click();
 
         $s.addClass('highlighted');
 
@@ -123,5 +153,9 @@ jQuery( function($){
         .blur( function(){
             $('#myc-settings-search .results').fadeOut('fast');
         } );
+
+    //set datePicker
+
+        $('.jquery-datepicker').datetimepicker();
 
 } );

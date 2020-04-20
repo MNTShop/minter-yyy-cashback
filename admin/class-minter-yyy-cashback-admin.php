@@ -74,7 +74,7 @@ class Minter_Yyy_Cashback_Admin {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/minter-yyy-cashback-admin.css', array(), $this->version, 'all' );
-
+        wp_enqueue_style( $this->plugin_name.'-datetimepicker' , plugin_dir_url( __FILE__ ) .'js/datetimepicker/jquery.datetimepicker.css');
 	}
 
 	/**
@@ -97,6 +97,7 @@ class Minter_Yyy_Cashback_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/minter-yyy-cashback-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name.'-datetimepicker', plugin_dir_url( __FILE__ ) . 'js/datetimepicker/build/jquery.datetimepicker.full.min.js', array( 'jquery' ), $this->version, true );
 
 	}
 
@@ -192,22 +193,32 @@ class Minter_Yyy_Cashback_Admin {
      */
     public function validate($input) {
         $yyy_helper = new YYY_push();
+        $options = get_option($this->plugin_name);
         $valid = array();
+        $valid['woocommerce_generate_coupons'] = (isset($input['woocommerce_generate_coupons']) && !empty($input['woocommerce_generate_coupons'])) ? $input['woocommerce_generate_coupons'] : '';
+
+        $valid['bip_price'] = (isset($input['bip_price']) && !empty($input['bip_price'])) ? $input['bip_price'] : '';
+        $valid['ticker'] = (isset($input['ticker']) && !empty($input['ticker'])) ? $input['ticker'] : '';
         $valid['minter_wallet_seed'] =(isset($input['minter_wallet_seed']) && !empty($input['minter_wallet_seed'])) ? $input['minter_wallet_seed'] : '';
         $valid['minter_wallet_mnemonic'] =(isset($input['minter_wallet_mnemonic']) && !empty($input['minter_wallet_mnemonic'])) ? $input['minter_wallet_mnemonic'] : '';
         $valid['minter_wallet_address'] = (isset($input['minter_wallet_address']) && !empty($input['minter_wallet_address'])) ? $input['minter_wallet_address'] : '';
         $valid['minter_wallet_public_key'] = (isset($input['minter_wallet_public_key']) && !empty($input['minter_wallet_public_key'])) ? $input['minter_wallet_public_key'] : '';
         $valid['minter_wallet_private_key'] = (isset($input['minter_wallet_private_key']) && !empty($input['minter_wallet_private_key'])) ? $input['minter_wallet_private_key'] : '';
+
+        $valid['minter_funfasy_project_id'] = (isset($input['minter_funfasy_project_id']) && !empty($input['minter_funfasy_project_id'])) ? $input['minter_funfasy_project_id'] : '';
+        $valid['minter_funfasy_project_secret'] = (isset($input['minter_funfasy_project_secret']) && !empty($input['minter_funfasy_project_secret'])) ? $input['minter_funfasy_project_secret'] : '';
+
+        //register reward
         $valid['register_cost'] = (isset($input['register_cost']) && !empty($input['register_cost'])) ? $input['register_cost'] : '';
         $valid['register_switch'] = (isset($input['register_switch']) && !empty($input['register_switch'])) ? $input['register_switch'] : '';
         $valid['register_use_password'] = (isset($input['register_use_password']) && !empty($input['register_use_password'])) ? $input['register_use_password'] : '';
-        $valid['minter_funfasy_project_id'] = (isset($input['minter_funfasy_project_id']) && !empty($input['minter_funfasy_project_id'])) ? $input['minter_funfasy_project_id'] : '';
-        $valid['minter_funfasy_project_secret'] = (isset($input['minter_funfasy_project_secret']) && !empty($input['minter_funfasy_project_secret'])) ? $input['minter_funfasy_project_secret'] : '';
-        $valid['woocommerce_generate_coupons'] = (isset($input['woocommerce_generate_coupons']) && !empty($input['woocommerce_generate_coupons'])) ? $input['woocommerce_generate_coupons'] : '';
-        $valid['bip_price'] = (isset($input['bip_price']) && !empty($input['bip_price'])) ? $input['bip_price'] : '';
-        $valid['ticker'] = (isset($input['ticker']) && !empty($input['ticker'])) ? $input['ticker'] : '';
 
-        //customization register
+        $valid['register_email_template'] = (isset($input['register_email_template']) && !empty($input['register_email_template'])) ? $input['register_email_template'] : '';
+        $valid['register_email_subject'] = (isset($input['register_email_subject']) && !empty($input['register_email_subject'])) ? $input['register_email_subject'] : '';
+        $valid['register_email_from'] = (isset($input['register_email_from']) && !empty($input['register_email_from'])) ? $input['register_email_from'] : '';
+        $valid['register_email_password_message'] = (isset($input['register_email_password_message']) && !empty($input['register_email_password_message'])) ? $input['register_email_password_message'] : '';
+        $valid['register_email_coupon_message'] = (isset($input['register_email_coupon_message']) && !empty($input['register_email_coupon_message'])) ? $input['register_email_coupon_message'] : '';
+
         $valid['register_customization_id'] = (isset($input['register_customization_id']) && !empty($input['register_customization_id'])) ? $input['register_customization_id'] : '';
         $valid['register_animation_name'] = (isset($input['register_animation_name']) && !empty($input['register_animation_name'])) ? $input['register_animation_name'] : '';
         $valid['register_animation_text'] = (isset($input['register_animation_text']) && !empty($input['register_animation_text'])) ? $input['register_animation_text'] : '';
@@ -223,12 +234,6 @@ class Minter_Yyy_Cashback_Admin {
 //        $valid['register_only_target'] = (isset($input['register_only_target']) && !empty($input['register_only_target'])) ? $input['register_only_target'] : '';
 //        $valid['register_target_shop'] = (isset($input['register_target_shop']) && !empty($input['register_target_shop'])) ? $input['register_target_shop'] : '';
 
-        $valid['register_email_template'] = (isset($input['register_email_template']) && !empty($input['register_email_template'])) ? $input['register_email_template'] : '';
-        $valid['register_email_subject'] = (isset($input['register_email_subject']) && !empty($input['register_email_subject'])) ? $input['register_email_subject'] : '';
-        $valid['register_email_from'] = (isset($input['register_email_from']) && !empty($input['register_email_from'])) ? $input['register_email_from'] : '';
-        $valid['register_email_password_message'] = (isset($input['register_email_password_message']) && !empty($input['register_email_password_message'])) ? $input['register_email_password_message'] : '';
-        $valid['register_email_coupon_message'] = (isset($input['register_email_coupon_message']) && !empty($input['register_email_coupon_message'])) ? $input['register_email_coupon_message'] : '';
-
         if(empty($valid['register_customization_id'])){
 
             //create new customization
@@ -241,7 +246,134 @@ class Minter_Yyy_Cashback_Admin {
             $newCustomizationId = $yyy_helper->createCustomization($settings);
             $valid['register_customization_id'] = $newCustomizationId;
         }
+
+        //scedule reward
+        $valid['schedule_cost'] = (isset($input['schedule_cost']) && !empty($input['schedule_cost'])) ? $input['schedule_cost'] : '';
+        $valid['schedule_time'] = (isset($input['schedule_time']) && !empty($input['schedule_time'])) ? $input['schedule_time'] : '';
+        $valid['schedule_use_password'] = (isset($input['schedule_use_password']) && !empty($input['schedule_use_password'])) ? $input['schedule_use_password'] : '';
+
+        $valid['schedule_email_template'] = (isset($input['schedule_email_template']) && !empty($input['schedule_email_template'])) ? $input['schedule_email_template'] : '';
+        $valid['schedule_email_subject'] = (isset($input['schedule_email_subject']) && !empty($input['schedule_email_subject'])) ? $input['schedule_email_subject'] : '';
+        $valid['schedule_email_from'] = (isset($input['schedule_email_from']) && !empty($input['schedule_email_from'])) ? $input['schedule_email_from'] : '';
+        $valid['schedule_email_password_message'] = (isset($input['schedule_email_password_message']) && !empty($input['schedule_email_password_message'])) ? $input['schedule_email_password_message'] : '';
+        $valid['schedule_email_coupon_message'] = (isset($input['schedule_email_coupon_message']) && !empty($input['schedule_email_coupon_message'])) ? $input['schedule_email_coupon_message'] : '';
+
+        $valid['schedule_customization_id'] = (isset($input['schedule_customization_id']) && !empty($input['schedule_customization_id'])) ? $input['schedule_customization_id'] : '';
+        $valid['schedule_animation_name'] = (isset($input['schedule_animation_name']) && !empty($input['schedule_animation_name'])) ? $input['schedule_animation_name'] : '';
+        $valid['schedule_animation_text'] = (isset($input['schedule_animation_text']) && !empty($input['schedule_animation_text'])) ? $input['schedule_animation_text'] : '';
+        $valid['schedule_background_name'] = (isset($input['schedule_background_name']) && !empty($input['schedule_background_name'])) ? $input['schedule_background_name'] : '';
+        $valid['schedule_head_text'] = (isset($input['schedule_head_text']) && !empty($input['schedule_head_text'])) ? $input['schedule_head_text'] : '';
+        $valid['schedule_logo_image_id'] = (isset($input['schedule_logo_image_id']) && !empty($input['schedule_logo_image_id'])) ? $input['schedule_logo_image_id'] : '';
+
+//        $valid['register_email_body_text'] = (isset($input['register_email_body_text']) && !empty($input['register_email_body_text'])) ? $input['register_email_body_text'] : '';
+//        $valid['register_email_button_text'] = (isset($input['register_email_button_text']) && !empty($input['register_email_button_text'])) ? $input['register_email_button_text'] : '';
+//        $valid['register_email_head_text'] = (isset($input['register_email_head_text']) && !empty($input['register_email_head_text'])) ? $input['register_email_head_text'] : '';
+//        $valid['register_email_image_id'] = (isset($input['register_email_image_id']) && !empty($input['register_email_image_id'])) ? $input['register_email_image_id'] : '';
+//        $valid['register_email_subject_text'] = (isset($input['register_email_subject_text']) && !empty($input['register_email_subject_text'])) ? $input['register_email_subject_text'] : '';
+//        $valid['register_only_target'] = (isset($input['register_only_target']) && !empty($input['register_only_target'])) ? $input['register_only_target'] : '';
+//        $valid['register_target_shop'] = (isset($input['register_target_shop']) && !empty($input['register_target_shop'])) ? $input['register_target_shop'] : '';
+        if(empty($valid['schedule_customization_id'])){
+
+            //create new customization
+            $settings = [
+                'animation_name'=>$valid['schedule_animation_name'],
+                'animation_text'=>$valid['schedule_animation_text'],
+                'background_name'=>$valid['schedule_background_name'],
+                'head_text'=>$valid['schedule_head_text'],
+            ];
+            $newCustomizationId = $yyy_helper->createCustomization($settings);
+            $valid['schedule_customization_id'] = $newCustomizationId;
+        }
+        $valid['schedule_switch'] =  $input['schedule_switch'];
+
+        //If Activate
+        error_log($input['schedule_switch'].$options['schedule_event']);
+        if(isset($input['schedule_switch']) && !empty($input['schedule_switch']) && empty($options['schedule_event'])){
+            $valid['schedule_switch'] =  $input['schedule_switch'];
+            //setup new cron job
+            //convert date schedule to timestamp
+            if(!empty($valid['schedule_time'] )){
+                $dateobj = DateTime::createFromFormat("Y/m/d H:i", $valid['schedule_time']);
+                $dateobj->setTimeZone(wp_timezone());
+                $timestamp_schedule_reward =$dateobj->getTimestamp();
+                //check if event scheduled before
+                $valid['schedule_event'] =1;
+                if(!wp_next_scheduled('schedule_reward_campaign')){
+                     wp_schedule_single_event( $timestamp_schedule_reward,'schedule_reward_campaign');
+                    error_log('HERE in next  '.$valid['schedule_event']);
+
+                error_log('Schedule '.$valid['schedule_event']);
+            }
+            }
+        }else{
+            //set  schedule event to false
+
+            $valid['schedule_event'] = 0;
+
+//            update_option($this->plugin_name,$options);
+        }
+
         return $valid;
+    }
+
+
+    public function start_scheduled_reward_campaign(){
+        //clear event
+        $options = get_option($this->plugin_name);
+//        get_option($this->plugin_name);
+        $options['schedule_event'] = 0;
+        $options['schedule_switch'] = 0;
+        update_option($this->plugin_name,$options);
+        // get event settings and start user send emails
+        $users = get_users( array( 'fields' => array( 'ID','user_email' ) ) );
+        $cost_per_user = $options['schedule_cost']/count($users);
+        foreach($users as $user_id){
+
+            if(empty($user_id->user_email)){
+                //  email for user if not have for dend throw the telegram auto-generated@mntshop.ru
+                error_log('Hey EMPTY set to auto-generated@mntshop.ru'.$user_id->user_email.'  '.$user_id->ID);
+                $user_email = 'auto-generated@mntshop.ru';
+            }else{
+                error_log('Hey Not Empyty'.$user_id->user_email.'  '.$user_id->ID);
+
+                $user_email = $user_id->user_email;
+            }
+            $YYY_push = new YYY_push();
+            $YYY_push
+                ->setUserId(278)
+                ->setRecipient('gerka2345@yandex.com')
+                ->setSender(get_bloginfo())
+                ->setCost($cost_per_user)
+                ->setTicker($options['ticker'])
+                ->setBipPrice($options['bip_price'])
+                ->setTitleAdmin('pay for register '.'gerka2345@yandex.com');
+            if($options['register_use_password']){
+                $YYY_push->setPassword(bin2hex(random_bytes(3)));
+            }if($options['register_customization_id']){
+                $YYY_push->setCustomizationSettingId( $options['register_customization_id']);
+            }
+            $YYY_push->save();
+            if( $YYY_push->request_push()){
+                $minter_helper = new FunFasy_helper();
+                if($minter_helper->pay_off_push($YYY_push)!==false){
+                    if($options['woocommerce_generate_coupons']){
+                        $YYY_push->generate_coupon_for_push();
+                    }
+                    if(false===$YYY_push->sendEmail('schedule')){
+                        error_log('Email with minter push are Not send '.$YYY_push->getTitleAdmin());
+                        //try more
+                    }
+                }else{
+                    error_log('Push not added balance  '.$YYY_push->getTitleAdmin());
+                }
+            }else{
+                error_log('YYY.cash not created push');
+            }
+
+
+        }
+        return;
+
     }
 
     /**

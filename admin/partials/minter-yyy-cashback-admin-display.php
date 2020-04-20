@@ -31,9 +31,9 @@
 
 $options = get_option($this->plugin_name);
 $minter_helper = new FunFasy_helper();
-$balanceBipConverted=$minter_helper->getBalanceTicker(0,$options['ticker']);
-
-
+//error_log($options['minter_wallet_address']);
+$balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_address'],$options['ticker']);
+//$balanceBipConverted =0 ;
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
@@ -45,12 +45,7 @@ $balanceBipConverted=$minter_helper->getBalanceTicker(0,$options['ticker']);
 
 <div class="wrap" id="myc-settings-page">
     <div class="settings-banner">
-
-
         <h1><?php echo esc_html( get_admin_page_title() ); ?> </h1> <a href="https://github.com/MNTShop/minter-yyy-cashback"><?php echo 'MNTSHOP PLUGINS';?></a>
-
-
-
     </div>
     <ul class="settings-nav">
         <li><a href="#welcome" id="tab-welcome"><?php esc_html_e( 'Welcome',$this->plugin_name) ?></a></li>
@@ -77,169 +72,372 @@ $balanceBipConverted=$minter_helper->getBalanceTicker(0,$options['ticker']);
         <div id="myc-settings-sections">
 
             <div id="myc-settings-section-reward_section" class="myc-settings-section" data-section="reward_section">
-                <h1><?php echo __('Register on site',$this->plugin_name); ?></h1>
 
-                <table class="form-table">
-                    <tbody>
-                    <tr class="myc-setting">
-                        <th scope="row"><label for="<?php echo $this->plugin_name;?>-register_switch"
-                            ><?php  _e('Active reward?', $this->plugin_name)?></label></th>
-                        <td>
-                            <label class="widefat">
-                                <input id="<?php echo $this->plugin_name;?>-register_switch"
-                                       name="<?php echo $this->plugin_name;?>[register_switch]"
-                                       type="checkbox"
-                                    <?php checked( ! empty( $options['register_switch'] ) ) ?> />
+                <ul class="settings-nav-rewards">
+<!--                    <li><a href="#welcome" id="tab-welcome">--><?php //esc_html_e( 'Welcome',$this->plugin_name) ?><!--</a></li>-->
+<!--                    <li><a href="#funfasy_section" id="tab-funfasy">--><?php //echo __('FunFasy',$this->plugin_name ) ?><!--</a></li>-->
+<!--                    --><?php
+//                    /** * Check if WooCommerce is active **/
+//                    if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) :?>
+<!--                        <li><a href="#woocommerce_section" id="tab-woocommerce">--><?php //echo __('Woocommerce',$this->plugin_name ) ?><!--</a></li>-->
+<!--                    --><?php //endif;?>
+                    <li><a href="#reward_schedule_section" id="tab-reward_schedule"><?php _e('Schedule reward',$this->plugin_name ) ?></a></li>
+                    <li><a href="#reward_register_section" id="tab-reward_register"><?php _e('Register on site',$this->plugin_name); ?></a></li>
+                </ul>
+                <div id="myc-settings-reward-sections">
+                    <div id="myc-settings-section-reward_schedule_section" class="myc-settings-section" data-section="reward_schedule_section">
+
+                    <h1><?php _e('Schedule reward campaign',$this->plugin_name); ?></h1>
+
+                    <table class="form-table">
+                        <tbody>
+                        <tr class="myc-setting">
+                            <th scope="row"><label for="<?php echo $this->plugin_name;?>-schedule_switch"
+                                ><?php  _e('Active reward?', $this->plugin_name)?></label></th>
+                            <td>
+                                <label class="widefat">
+                                    <input id="<?php echo $this->plugin_name;?>-schedule_switch"
+                                           name="<?php echo $this->plugin_name;?>[schedule_switch]"
+                                           type="checkbox"
+                                        <?php checked( ! empty( $options['schedule_switch'] ) ) ?> />
+                                        <?php  echo  __( 'Enabled',$this->plugin_name ); ?>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr class="myc-setting">
+                            <th scope="row"><label for="<?php echo $this->plugin_name;?>-schedule_use_password"
+                                ><?php  _e('Use password in push?', $this->plugin_name)?></label></th>
+                            <td>
+                                <label class="widefat">
+                                    <input id="<?php echo $this->plugin_name;?>-schedule_use_password"
+                                           name="<?php echo $this->plugin_name;?>[schedule_use_password]"
+                                           type="checkbox"
+                                        <?php checked( ! empty( $options['schedule_use_password'] ) ) ?>
+                                    />
                                     <?php  echo  __( 'Enabled',$this->plugin_name ); ?>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr class="myc-setting">
-                        <th scope="row"><label for="<?php echo $this->plugin_name;?>-register_use_password"
-                            ><?php  _e('Use password in push?', $this->plugin_name)?></label></th>
-                        <td>
-                            <label class="widefat">
-                                <input id="<?php echo $this->plugin_name;?>-register_use_password"
-                                       name="<?php echo $this->plugin_name;?>[register_use_password]"
-                                       type="checkbox"
-                                    <?php checked( ! empty( $options['register_use_password'] ) ) ?>
-                                />
-                                <?php  echo  __( 'Enabled',$this->plugin_name ); ?>
-                            </label>
-                            <small class="description">
-                                <?php  _e('Impossible if active WooCommerce generate coupons',$this->plugin_name); ?>
-                            </small>
-                        </td>
-                    </tr>
-                    <tr class="myc-setting">
-                        <th scope="row"><label for="<?php echo $this->plugin_name;?>-register_cost"
-                            ><?php  _e('How many coins do you want to reward?', $this->plugin_name)?></label></th>
-                        <td>
-                            <input id="<?php echo $this->plugin_name;?>-register_cost"
-                                   name="<?php echo $this->plugin_name;?>[register_cost]"
-                                   class="myc-setting-text" type="text"
-                                   value="<?php if(!empty($options['register_cost'])) esc_attr_e($options['register_cost']);?>" />
-                            <small class="description">
-                                <?php  _e('In Minter Wallet section you can add custom ticker',$this->plugin_name); ?>
-                            </small>
-                        </td>
-                    </tr>
-                    <tr class="myc-setting">
-                        <th scope="row"><label
-                            ><?php  _e('Customization push settings', $this->plugin_name)?></label></th>
-                        <td>
-                            <label for="<?php echo $this->plugin_name;?>-register_customization_id">
-                                <span><?php esc_attr_e('Customization id', $this->plugin_name);?></span>
-                            </label>
-                            <input id="<?php echo $this->plugin_name;?>-register_customization_id"
-                                   name="<?php echo $this->plugin_name;?>[register_customization_id]"
-                                   class="myc-setting-text" type="text"
-                                   value="<?php if(!empty($options['register_customization_id'])) esc_attr_e($options['register_customization_id']);?>" />
-                            <label for="<?php echo $this->plugin_name;?>-register_animation_name">
-                                <span><?php esc_attr_e('Animation type', $this->plugin_name);?></span>
-                            </label>
-                            <select name="<?php echo $this->plugin_name;?>[register_animation_name]">
-                                    <option
-                                            value="0" <?php selected( 0, $options['register_animation_name'] ) ?>><?php _e('Without animation',$this->plugin_name);?></option>
-                                    <option
-                                        value="1" <?php selected( 1, $options['register_animation_name'] ) ?>><?php _e('Papper plane',$this->plugin_name);?></option>
-                                    <option
-                                        value="2" <?php selected( 2, $options['register_animation_name'] ) ?>><?php _e('Gift sending',$this->plugin_name);?></option>
-                                    <option
-                                        value="3" <?php selected( 3, $options['register_animation_name'] ) ?>><?php _e('Milos time',$this->plugin_name);?></option>
-                            </select>
-                            <label for="<?php echo $this->plugin_name;?>-register_head_text">
-                                <span><?php esc_attr_e('Head text push', $this->plugin_name);?></span>
-                            </label>
-                            <input id="<?php echo $this->plugin_name;?>-register_head_text"
-                                   name="<?php echo $this->plugin_name;?>[register_head_text]"
-                                   class="myc-setting-text" type="text"
-                                   value="<?php if(!empty($options['register_head_text'])) esc_attr_e($options['register_head_text']);?>" />
-                            <label for="<?php echo $this->plugin_name;?>-register_animation_text">
-                                <span><?php esc_attr_e('Animation text', $this->plugin_name);?></span>
-                            </label>
-                            <input id="<?php echo $this->plugin_name;?>-register_animation_text"
-                                   name="<?php echo $this->plugin_name;?>[register_animation_text]"
-                                   class="myc-setting-text" type="text"
-                                   value="<?php if(!empty($options['register_animation_text'])) esc_attr_e($options['register_animation_text']);?>" />
+                                </label>
+                                <small class="description">
+                                    <?php  _e('Impossible if active WooCommerce generate coupons',$this->plugin_name); ?>
+                                </small>
+                            </td>
+                        </tr>
+                        <tr class="myc-setting">
+                            <th scope="row"><label for="<?php echo $this->plugin_name;?>-schedule_time"
+                                ><?php  _e('When start reward campaign?', $this->plugin_name)?></label></th>
+                            <td>
+                                <input id="<?php echo $this->plugin_name;?>-schedule_time"
+                                       name="<?php echo $this->plugin_name;?>[schedule_time]"
+                                       class="jquery-datepicker" type="text"
+                                       value="<?php if(!empty($options['schedule_time'])) esc_attr_e($options['schedule_time']);?>" />
+                                <small class="description">
+                                    <?php  _e('In Minter Wallet section you can add custom ticker',$this->plugin_name); ?>
+                                </small>
+                            </td>
+                        </tr>
 
-                            <label for="<?php echo $this->plugin_name;?>-register_background_name">
-                                <span><?php esc_attr_e('Background', $this->plugin_name);?></span>
-                            </label>
-                            <select name="<?php echo $this->plugin_name;?>[register_background_name]">
-                                <option value="" <?php selected( '', $options['register_background_name'] ) ?>><?php _e('Standard',$this->plugin_name);?></option>
-                                <option value="black" <?php selected( 'black', $options['register_background_name'] ) ?>><?php _e('Black',$this->plugin_name);?></option>
-                                <option value="purple" <?php selected( 'purple', $options['register_background_name'] ) ?>><?php _e('Purple',$this->plugin_name);?></option>
-                                <option value="beige" <?php selected( 'beige', $options['register_background_name'] ) ?>><?php _e('Beige',$this->plugin_name);?></option>
-                                <option value="pink" <?php selected( 'pink', $options['register_background_name'] ) ?>><?php _e('Pink',$this->plugin_name);?></option>
-                                <option value="blue" <?php selected( 'blue', $options['register_background_name'] ) ?>><?php _e('Blue',$this->plugin_name);?></option>
-                                <option value="green" <?php selected( 'green', $options['register_background_name'] ) ?>><?php _e('Green',$this->plugin_name);?></option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr class="myc-setting">
-                        <th scope="row"><label
-                            ><?php  _e('E-mail notification', $this->plugin_name)?></label></th>
-                        <td>
+                        <tr class="myc-setting">
+                            <th scope="row"><label for="<?php echo $this->plugin_name;?>-schedule_cost"
+                                ><?php  _e('How many coins do you want to reward?', $this->plugin_name)?>
+                                    <small class="description">
+                                        <?php  _e('The entire campaign budget', $this->plugin_name)?>
+                                    </small></label></th>
 
+                            <td>
+                                <input id="<?php echo $this->plugin_name;?>-schedule_cost"
+                                       name="<?php echo $this->plugin_name;?>[schedule_cost]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['schedule_cost'])) esc_attr_e($options['schedule_cost']);?>" />
+                                <small class="description">
+                                    <?php  _e('In Minter Wallet section you can add custom ticker',$this->plugin_name); ?>
+                                </small>
+                            </td>
+                        </tr>
+                        <tr class="myc-setting">
+                            <th scope="row"><label
+                                ><?php  _e('Customization push settings', $this->plugin_name)?></label></th>
+                            <td>
+                                <label for="<?php echo $this->plugin_name;?>-schedule_customization_id">
+                                    <span><?php esc_attr_e('Customization id', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-schedule_customization_id"
+                                       name="<?php echo $this->plugin_name;?>[schedule_customization_id]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['schedule_customization_id'])) esc_attr_e($options['schedule_customization_id']);?>" />
+                                <label for="<?php echo $this->plugin_name;?>-schedule_animation_name">
+                                    <span><?php esc_attr_e('Animation type', $this->plugin_name);?></span>
+                                </label>
+                                <select name="<?php echo $this->plugin_name;?>[schedule_animation_name]">
+                                        <option
+                                                value="0" <?php selected( 0, $options['schedule_animation_name'] ) ?>><?php _e('Without animation',$this->plugin_name);?></option>
+                                        <option
+                                            value="1" <?php selected( 1, $options['schedule_animation_name'] ) ?>><?php _e('Papper plane',$this->plugin_name);?></option>
+                                        <option
+                                            value="2" <?php selected( 2, $options['schedule_animation_name'] ) ?>><?php _e('Gift sending',$this->plugin_name);?></option>
+                                        <option
+                                            value="3" <?php selected( 3, $options['schedule_animation_name'] ) ?>><?php _e('Milos time',$this->plugin_name);?></option>
+                                </select>
+                                <label for="<?php echo $this->plugin_name;?>-schedule_head_text">
+                                    <span><?php esc_attr_e('Head text push', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-schedule_head_text"
+                                       name="<?php echo $this->plugin_name;?>[schedule_head_text]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['schedule_head_text'])) esc_attr_e($options['schedule_head_text']);?>" />
+                                <label for="<?php echo $this->plugin_name;?>-schedule_animation_text">
+                                    <span><?php esc_attr_e('Animation text', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-schedule_animation_text"
+                                       name="<?php echo $this->plugin_name;?>[schedule_animation_text]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['schedule_animation_text'])) esc_attr_e($options['schedule_animation_text']);?>" />
 
-                            <label for="<?php echo $this->plugin_name;?>-register_email_from">
-                                <span><?php esc_attr_e('E-mail from', $this->plugin_name);?></span>
-                            </label>
-                            <input id="<?php echo $this->plugin_name;?>-register_email_from"
-                                   name="<?php echo $this->plugin_name;?>[register_email_from]"
-                                   class="myc-setting-text" type="text"
-                                   value="<?php if(!empty($options['register_email_from'])) esc_attr_e($options['register_email_from']);?>" />
-
-                            <label for="<?php echo $this->plugin_name;?>-register_email_subject">
-                                <span><?php esc_attr_e('E-mail subject', $this->plugin_name);?></span>
-                            </label>
-                            <input id="<?php echo $this->plugin_name;?>-register_email_subject"
-                                   name="<?php echo $this->plugin_name;?>[register_email_subject]"
-                                   class="myc-setting-text" type="text"
-                                   value="<?php if(!empty($options['register_email_subject'])) esc_attr_e($options['register_email_subject']);?>" />
+                                <label for="<?php echo $this->plugin_name;?>-schedule_background_name">
+                                    <span><?php esc_attr_e('Background', $this->plugin_name);?></span>
+                                </label>
+                                <select name="<?php echo $this->plugin_name;?>[schedule_background_name]">
+                                    <option value="" <?php selected( '', $options['schedule_background_name'] ) ?>><?php _e('Standard',$this->plugin_name);?></option>
+                                    <option value="black" <?php selected( 'black', $options['schedule_background_name'] ) ?>><?php _e('Black',$this->plugin_name);?></option>
+                                    <option value="purple" <?php selected( 'purple', $options['schedule_background_name'] ) ?>><?php _e('Purple',$this->plugin_name);?></option>
+                                    <option value="beige" <?php selected( 'beige', $options['schedule_background_name'] ) ?>><?php _e('Beige',$this->plugin_name);?></option>
+                                    <option value="pink" <?php selected( 'pink', $options['schedule_background_name'] ) ?>><?php _e('Pink',$this->plugin_name);?></option>
+                                    <option value="blue" <?php selected( 'blue', $options['schedule_background_name'] ) ?>><?php _e('Blue',$this->plugin_name);?></option>
+                                    <option value="green" <?php selected( 'green', $options['schedule_background_name'] ) ?>><?php _e('Green',$this->plugin_name);?></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="myc-setting">
+                            <th scope="row"><label
+                                ><?php  _e('E-mail notification', $this->plugin_name)?></label></th>
+                            <td>
 
 
-                            <label for="<?php echo $this->plugin_name;?>-register_email_password_message">
-                                <span><?php esc_attr_e('HTML E-mail #PASSWORD_MESSAGE#', $this->plugin_name);?></span>
-                            </label>
-                            <textarea id="<?php echo $this->plugin_name;?>-register_email_password_message"
-                                   name="<?php echo $this->plugin_name;?>[register_email_password_message]"
-                                   class="myc-setting-textarea widefat"
-                                   rows="2">
-                                <?php if(!empty($options['register_email_password_message'])) esc_attr_e($options['register_email_password_message']);?>
-                                </textarea>
+                                <label for="<?php echo $this->plugin_name;?>-schedule_email_from">
+                                    <span><?php esc_attr_e('E-mail from', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-schedule_email_from"
+                                       name="<?php echo $this->plugin_name;?>[schedule_email_from]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['schedule_email_from'])) esc_attr_e($options['schedule_email_from']);?>" />
 
-                            <label for="<?php echo $this->plugin_name;?>-register_email_coupon_message">
-                                <span><?php esc_attr_e('HTML E-mail #COUPON_MESSAGE#', $this->plugin_name);?></span>
-                            </label>
-                            <textarea id="<?php echo $this->plugin_name;?>-register_email_coupon_message"
-                                   name="<?php echo $this->plugin_name;?>[register_email_coupon_message]"
-                                   class="myc-setting-textarea widefat"
-                                   rows="2">
-                                <?php if(!empty($options['register_email_coupon_message'])) esc_attr_e($options['register_email_coupon_message']);?>
-                                </textarea>
-                            <label for="<?php echo $this->plugin_name;?>-register_email_template">
-                                <span><?php esc_attr_e('HTML E-mail template', $this->plugin_name);?></span>
-                            </label>
-                    <textarea name="<?php echo $this->plugin_name;?>[register_email_template]"
-                              class="myc-setting-textarea widefat"
-                              rows="20"><?php echo esc_textarea(  $options['register_email_template']  ) ?></textarea>
-                            <small class="description">
-                                <?php  _e('You can use template vars:<br>
-                                #COUPON_MESSAGE# - If you check generate coupon, in woocommerce settings, you can tell it to your customers in custom message<br>
-                                #PASSWORD_MESSAGE# - If you check generate push password , you can tell also it to your customers in custom message<br>
-                                #PUSH_URL# - Generated push url<br>
-                                #PUSH_LINK_ID# - Generated Link ID push also coupon code for woocommerce<br>
-                                #PUSH_PASSWORD# - Generated push password<br>
-                                #SITE_NAME# - returned from get_bloginfo() (Your default site name)
-                                ',$this->plugin_name); ?>
-                            </small>
-                        </td>
-                    </tr>
+                                <label for="<?php echo $this->plugin_name;?>-schedule_email_subject">
+                                    <span><?php esc_attr_e('E-mail subject', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-schedule_email_subject"
+                                       name="<?php echo $this->plugin_name;?>[schedule_email_subject]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['schedule_email_subject'])) esc_attr_e($options['schedule_email_subject']);?>" />
 
-                    </tbody>
-                </table>
+
+                                <label for="<?php echo $this->plugin_name;?>-schedule_email_password_message">
+                                    <span><?php esc_attr_e('HTML E-mail #PASSWORD_MESSAGE#', $this->plugin_name);?></span>
+                                </label>
+                                <textarea id="<?php echo $this->plugin_name;?>-schedule_email_password_message"
+                                       name="<?php echo $this->plugin_name;?>[schedule_email_password_message]"
+                                       class="myc-setting-textarea widefat"
+                                       rows="2">
+                                    <?php if(!empty($options['schedule_email_password_message'])) esc_attr_e($options['schedule_email_password_message']);?>
+                                    </textarea>
+
+                                <label for="<?php echo $this->plugin_name;?>-schedule_email_coupon_message">
+                                    <span><?php esc_attr_e('HTML E-mail #COUPON_MESSAGE#', $this->plugin_name);?></span>
+                                </label>
+                                <textarea id="<?php echo $this->plugin_name;?>-schedule_email_coupon_message"
+                                       name="<?php echo $this->plugin_name;?>[schedule_email_coupon_message]"
+                                       class="myc-setting-textarea widefat"
+                                       rows="2">
+                                    <?php if(!empty($options['schedule_email_coupon_message'])) esc_attr_e($options['schedule_email_coupon_message']);?>
+                                    </textarea>
+                                <label for="<?php echo $this->plugin_name;?>-schedule_email_template">
+                                    <span><?php esc_attr_e('HTML E-mail template', $this->plugin_name);?></span>
+                                </label>
+                        <textarea name="<?php echo $this->plugin_name;?>[schedule_email_template]"
+                                  class="myc-setting-textarea widefat"
+                                  rows="20"><?php echo esc_textarea(  $options['schedule_email_template']  ) ?></textarea>
+                                <small class="description">
+                                    <?php  _e('You can use template vars:<br>
+                                    #COUPON_MESSAGE# - If you check generate coupon, in woocommerce settings, you can tell it to your customers in custom message<br>
+                                    #PASSWORD_MESSAGE# - If you check generate push password , you can tell also it to your customers in custom message<br>
+                                    #PUSH_URL# - Generated push url<br>
+                                    #PUSH_LINK_ID# - Generated Link ID push also coupon code for woocommerce<br>
+                                    #PUSH_PASSWORD# - Generated push password<br>
+                                    #SITE_NAME# - returned from get_bloginfo() (Your default site name)
+                                    ',$this->plugin_name); ?>
+                                </small>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    </div>
+
+
+                    <div id="myc-settings-section-reward_register_section" class="myc-settings-section" data-section="reward_register_section">
+
+                    <h1><?php echo __('Register on site',$this->plugin_name); ?></h1>
+
+                    <table class="form-table">
+                        <tbody>
+                        <tr class="myc-setting">
+                            <th scope="row"><label for="<?php echo $this->plugin_name;?>-register_switch"
+                                ><?php  _e('Active reward?', $this->plugin_name)?></label></th>
+                            <td>
+                                <label class="widefat">
+                                    <input id="<?php echo $this->plugin_name;?>-register_switch"
+                                           name="<?php echo $this->plugin_name;?>[register_switch]"
+                                           type="checkbox"
+                                        <?php checked( ! empty( $options['register_switch'] ) ) ?> />
+                                        <?php  echo  __( 'Enabled',$this->plugin_name ); ?>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr class="myc-setting">
+                            <th scope="row"><label for="<?php echo $this->plugin_name;?>-register_use_password"
+                                ><?php  _e('Use password in push?', $this->plugin_name)?></label></th>
+                            <td>
+                                <label class="widefat">
+                                    <input id="<?php echo $this->plugin_name;?>-register_use_password"
+                                           name="<?php echo $this->plugin_name;?>[register_use_password]"
+                                           type="checkbox"
+                                        <?php checked( ! empty( $options['register_use_password'] ) ) ?>
+                                    />
+                                    <?php  echo  __( 'Enabled',$this->plugin_name ); ?>
+                                </label>
+                                <small class="description">
+                                    <?php  _e('Impossible if active WooCommerce generate coupons',$this->plugin_name); ?>
+                                </small>
+                            </td>
+                        </tr>
+                        <tr class="myc-setting">
+                            <th scope="row"><label for="<?php echo $this->plugin_name;?>-register_cost"
+                                ><?php  _e('How many coins do you want to reward?', $this->plugin_name)?></label></th>
+                            <td>
+                                <input id="<?php echo $this->plugin_name;?>-register_cost"
+                                       name="<?php echo $this->plugin_name;?>[register_cost]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['register_cost'])) esc_attr_e($options['register_cost']);?>" />
+                                <small class="description">
+                                    <?php  _e('In Minter Wallet section you can add custom ticker',$this->plugin_name); ?>
+                                </small>
+                            </td>
+                        </tr>
+                        <tr class="myc-setting">
+                            <th scope="row"><label
+                                ><?php  _e('Customization push settings', $this->plugin_name)?></label></th>
+                            <td>
+                                <label for="<?php echo $this->plugin_name;?>-register_customization_id">
+                                    <span><?php esc_attr_e('Customization id', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-register_customization_id"
+                                       name="<?php echo $this->plugin_name;?>[register_customization_id]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['register_customization_id'])) esc_attr_e($options['register_customization_id']);?>" />
+                                <label for="<?php echo $this->plugin_name;?>-register_animation_name">
+                                    <span><?php esc_attr_e('Animation type', $this->plugin_name);?></span>
+                                </label>
+                                <select name="<?php echo $this->plugin_name;?>[register_animation_name]">
+                                        <option
+                                                value="0" <?php selected( 0, $options['register_animation_name'] ) ?>><?php _e('Without animation',$this->plugin_name);?></option>
+                                        <option
+                                            value="1" <?php selected( 1, $options['register_animation_name'] ) ?>><?php _e('Papper plane',$this->plugin_name);?></option>
+                                        <option
+                                            value="2" <?php selected( 2, $options['register_animation_name'] ) ?>><?php _e('Gift sending',$this->plugin_name);?></option>
+                                        <option
+                                            value="3" <?php selected( 3, $options['register_animation_name'] ) ?>><?php _e('Milos time',$this->plugin_name);?></option>
+                                </select>
+                                <label for="<?php echo $this->plugin_name;?>-register_head_text">
+                                    <span><?php esc_attr_e('Head text push', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-register_head_text"
+                                       name="<?php echo $this->plugin_name;?>[register_head_text]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['register_head_text'])) esc_attr_e($options['register_head_text']);?>" />
+                                <label for="<?php echo $this->plugin_name;?>-register_animation_text">
+                                    <span><?php esc_attr_e('Animation text', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-register_animation_text"
+                                       name="<?php echo $this->plugin_name;?>[register_animation_text]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['register_animation_text'])) esc_attr_e($options['register_animation_text']);?>" />
+
+                                <label for="<?php echo $this->plugin_name;?>-register_background_name">
+                                    <span><?php esc_attr_e('Background', $this->plugin_name);?></span>
+                                </label>
+                                <select name="<?php echo $this->plugin_name;?>[register_background_name]">
+                                    <option value="" <?php selected( '', $options['register_background_name'] ) ?>><?php _e('Standard',$this->plugin_name);?></option>
+                                    <option value="black" <?php selected( 'black', $options['register_background_name'] ) ?>><?php _e('Black',$this->plugin_name);?></option>
+                                    <option value="purple" <?php selected( 'purple', $options['register_background_name'] ) ?>><?php _e('Purple',$this->plugin_name);?></option>
+                                    <option value="beige" <?php selected( 'beige', $options['register_background_name'] ) ?>><?php _e('Beige',$this->plugin_name);?></option>
+                                    <option value="pink" <?php selected( 'pink', $options['register_background_name'] ) ?>><?php _e('Pink',$this->plugin_name);?></option>
+                                    <option value="blue" <?php selected( 'blue', $options['register_background_name'] ) ?>><?php _e('Blue',$this->plugin_name);?></option>
+                                    <option value="green" <?php selected( 'green', $options['register_background_name'] ) ?>><?php _e('Green',$this->plugin_name);?></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="myc-setting">
+                            <th scope="row"><label
+                                ><?php  _e('E-mail notification', $this->plugin_name)?></label></th>
+                            <td>
+
+
+                                <label for="<?php echo $this->plugin_name;?>-register_email_from">
+                                    <span><?php esc_attr_e('E-mail from', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-register_email_from"
+                                       name="<?php echo $this->plugin_name;?>[register_email_from]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['register_email_from'])) esc_attr_e($options['register_email_from']);?>" />
+
+                                <label for="<?php echo $this->plugin_name;?>-register_email_subject">
+                                    <span><?php esc_attr_e('E-mail subject', $this->plugin_name);?></span>
+                                </label>
+                                <input id="<?php echo $this->plugin_name;?>-register_email_subject"
+                                       name="<?php echo $this->plugin_name;?>[register_email_subject]"
+                                       class="myc-setting-text" type="text"
+                                       value="<?php if(!empty($options['register_email_subject'])) esc_attr_e($options['register_email_subject']);?>" />
+
+
+                                <label for="<?php echo $this->plugin_name;?>-register_email_password_message">
+                                    <span><?php esc_attr_e('HTML E-mail #PASSWORD_MESSAGE#', $this->plugin_name);?></span>
+                                </label>
+                                <textarea id="<?php echo $this->plugin_name;?>-register_email_password_message"
+                                       name="<?php echo $this->plugin_name;?>[register_email_password_message]"
+                                       class="myc-setting-textarea widefat"
+                                       rows="2">
+                                    <?php if(!empty($options['register_email_password_message'])) esc_attr_e($options['register_email_password_message']);?>
+                                    </textarea>
+
+                                <label for="<?php echo $this->plugin_name;?>-register_email_coupon_message">
+                                    <span><?php esc_attr_e('HTML E-mail #COUPON_MESSAGE#', $this->plugin_name);?></span>
+                                </label>
+                                <textarea id="<?php echo $this->plugin_name;?>-register_email_coupon_message"
+                                       name="<?php echo $this->plugin_name;?>[register_email_coupon_message]"
+                                       class="myc-setting-textarea widefat"
+                                       rows="2">
+                                    <?php if(!empty($options['register_email_coupon_message'])) esc_attr_e($options['register_email_coupon_message']);?>
+                                    </textarea>
+                                <label for="<?php echo $this->plugin_name;?>-register_email_template">
+                                    <span><?php esc_attr_e('HTML E-mail template', $this->plugin_name);?></span>
+                                </label>
+                        <textarea name="<?php echo $this->plugin_name;?>[register_email_template]"
+                                  class="myc-setting-textarea widefat"
+                                  rows="20"><?php echo esc_textarea(  $options['register_email_template']  ) ?></textarea>
+                                <small class="description">
+                                    <?php  _e('You can use template vars:<br>
+                                    #COUPON_MESSAGE# - If you check generate coupon, in woocommerce settings, you can tell it to your customers in custom message<br>
+                                    #PASSWORD_MESSAGE# - If you check generate push password , you can tell also it to your customers in custom message<br>
+                                    #PUSH_URL# - Generated push url<br>
+                                    #PUSH_LINK_ID# - Generated Link ID push also coupon code for woocommerce<br>
+                                    #PUSH_PASSWORD# - Generated push password<br>
+                                    #SITE_NAME# - returned from get_bloginfo() (Your default site name)
+                                    ',$this->plugin_name); ?>
+                                </small>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
             </div>
 
             <div id="myc-settings-section-wallet_section" class="myc-settings-section" data-section="wallet_section">

@@ -79,6 +79,8 @@
 #myc-settings-page .settings-banner #myc-settings-search .results li:hover {
     background: #f7f7f7;
 }
+
+
 #myc-settings-page .settings-nav {
     background: #f6f6f6;
     border-bottom: 1px solid #d6d6d6;
@@ -115,6 +117,46 @@
     background: #f0f0f0;
     border-bottom-color: #f0f0f0;
 }
+
+#myc-settings-page .settings-nav-rewards {
+    background: #f6f6f6;
+    border-bottom: 1px solid #d6d6d6;
+    padding: 5px 0 0 30px;
+    margin: 0;
+    font-size: 0;
+}
+#myc-settings-page .settings-nav-rewards li {
+    display: inline-block;
+    margin: 0 0 -1px 0;
+    background: #f6f6f6;
+    line-height: 1em;
+    font-size: 12px;
+    position: relative;
+    border: 1px solid #d6d6d6;
+    border-width: 1px 0 1px 1px;
+    transition: all 0.2s;
+}
+#myc-settings-page .settings-nav-rewards li:last-child {
+    border-right-width: 1px;
+}
+#myc-settings-page .settings-nav-rewards li a {
+    display: block;
+    text-decoration: none;
+    color: #555;
+    padding: 12px 25px;
+    font-weight: bold;
+    box-shadow: none !important;
+}
+#myc-settings-page .settings-nav-rewards li:hover {
+    background: #f3f3f3;
+}
+#myc-settings-page .settings-nav-rewards li.active {
+    background: #f0f0f0;
+    border-bottom-color: #f0f0f0;
+}
+
+
+
 #myc-settings-page #setting-error-settings_updated {
     margin: 20px 30px 10px 30px;
 }
@@ -150,6 +192,41 @@
     user-select: none;
 }
 #myc-settings-page #myc-settings-sections #myc-settings-section-welcome {
+    padding: 20px 30px 0 30px;
+}
+
+
+
+
+#myc-settings-page #myc-settings-reward-sections .myc-settings-section {
+    display: none;
+    padding: 0 30px 0 20px;
+}
+#myc-settings-page #myc-settings-reward-sections .myc-settings-section .description {
+    font-style: italic;
+    color: #999;
+    margin-top: 5px;
+    display: block;
+}
+#myc-settings-page #myc-settings-reward-sections .myc-settings-section label {
+    display: block;
+}
+#myc-settings-page #myc-settings-reward-sections .myc-settings-section tr th {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+#myc-settings-page #myc-settings-reward-sections .myc-settings-section tr th label {
+    border-left: 0 solid #0073aa;
+    padding: 20px 0 20px 10px;
+}
+#myc-settings-page #myc-settings-reward-sections .myc-settings-section tr td label {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#myc-settings-page #myc-settings-reward-sections #myc-settings-section-welcome {
     padding: 20px 30px 0 30px;
 }
 #myc-settings-page .submit {

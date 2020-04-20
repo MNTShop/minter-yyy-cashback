@@ -92,6 +92,10 @@ Currently, you can create cupon with minter push id and also add your price for 
 5. In Rewards section you can manage all rewards for your subscribers or clients
 
 == Changelog ==
+= 1.1 =
+
+* Add language: Chinese
+* Add reward campaign section (Now you can plan rewards for your customers).
 
 = 1.0 =
 * Add language: Russian, Spanish

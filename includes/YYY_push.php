@@ -440,6 +440,23 @@ class YYY_push
                 }
             }
                 break;
+            case 'schedule':
+                if(!empty($this->user_id) && !empty($this->link_id)){
+                if($this->send_e_mail_schedule_to_user()){
+                    $this->setEmailSend(true);
+                    $this->save();
+                    return true;
+                }else{
+                    if($tries!==2){
+                        $tries = $tries+1;
+                        $this->sendEmail('schedule',$tries);
+                    }else{
+                        return false;
+                    }
+
+                }
+            }
+                break;
             default:
                 return $this;
                 break;
@@ -464,7 +481,7 @@ class YYY_push
         add_filter( 'wp_mail_content_type',[$this,'wps_set_content_type'] );
 
 //        $headers = "From: " . $options['register_email_from'] . "\r\n";
-        $subject = __('Coupon with true money!', $this->plugin_name);
+        $subject = $options['register_email_subject'];
         $htmlMessage = $options['register_email_template'];
         //Search and replace
         $password_message = '';
@@ -497,6 +514,63 @@ class YYY_push
 
         $headers = "";
         $headers .= "From: ".$options['register_email_from']." <".$options['register_email_from']."> \r\n";
+        $headers .= "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+        //send to user
+        $status = wp_mail($recipient, $subject, $htmlMessage, $headers);
+        return $status;
+    }
+
+    public function send_e_mail_schedule_to_user(){
+
+        $options = get_option($this->plugin_name);
+
+        $search = [];
+        $replace = [];
+        if (empty($this->recipient)) {
+            $user_info = get_userdata($this->user_id);
+            $recipient = $user_info->user_email;
+        } else {
+            $recipient = $this->recipient;
+        }
+
+        add_filter( 'wp_mail_content_type',[$this,'wps_set_content_type'] );
+
+//        $headers = "From: " . $options['register_email_from'] . "\r\n";
+        $subject = $options['schedule_email_subject'];
+        $htmlMessage = $options['schedule_email_template'];
+        //Search and replace
+        $password_message = '';
+        if($this->isHaveCoupon()){
+            $coupon_message =$options['schedule_email_coupon_message'];
+        }else{
+            $coupon_message ='';
+            $password_message =($this->password)? $options['schedule_email_password_message']:'';
+        }
+
+        $search[] = '#COUPON_MESSAGE#';
+        $replace['#COUPON_MESSAGE#'] =  $coupon_message ;
+
+        $search[] = '#PASSWORD_MESSAGE#';
+        $replace['#PASSWORD_MESSAGE#'] = $password_message;
+
+        $search[] = '#PUSH_URL#';
+        $replace['#PUSH_URL#'] = 'https://yyy.cash/push/' . $this->link_id . '/';
+
+        $search[] = '#PUSH_LINK_ID#';
+        $replace['#PUSH_LINK_ID#'] = $this->link_id;
+
+        $search[] = '#PUSH_PASSWORD#';
+        $replace['#PUSH_PASSWORD#'] = $this->password;
+
+        $search[] = '#SITE_NAME#';
+        $replace['#SITE_NAME#'] = get_bloginfo();
+
+        $htmlMessage = str_replace($search, $replace, $htmlMessage);
+
+        $headers = "";
+        $headers .= "From: ".$options['schedule_email_from']." <".$options['schedule_email_from']."> \r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 

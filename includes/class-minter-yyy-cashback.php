@@ -70,7 +70,7 @@ class Minter_Yyy_Cashback {
 		if ( defined( 'MINTER_YYY_CASHBACK_VERSION' ) ) {
 			$this->version = MINTER_YYY_CASHBACK_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->version = '1.1.0';
 		}
 		$this->plugin_name = 'minter-yyy-cashback';
 
@@ -153,8 +153,10 @@ class Minter_Yyy_Cashback {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Minter_Yyy_Cashback_Admin( $this->get_plugin_name(), $this->get_version() );
+        $this->loader->add_action('schedule_reward_campaign', $plugin_admin, 'start_scheduled_reward_campaign',9);
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+
+        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
         // Add menu item
         $this->loader->add_action('admin_menu', $plugin_admin, 'add_plugin_admin_menu');
@@ -169,6 +171,7 @@ class Minter_Yyy_Cashback {
         // Add Minter Push type
         $this->loader->add_action('init', $plugin_admin, 'minter_push_type_generate');
         $this->loader->add_action('add_meta_boxes_minter-push', $plugin_admin, 'myc_add_metabox');
+        // Add cron job for send Rewards campaign
 
     }
 
@@ -188,7 +191,7 @@ class Minter_Yyy_Cashback {
 		if(!empty($options['register_switch'])){
             $this->loader->add_action( 'user_register', $plugin_public, 'pay_for_user_registration' );
         }
-        $this->loader->add_action( 'woocommerce_coupon_is_valid',$plugin_public, 'update_coupon_if_YYYPush',100,3 ); // Where $priority is default 10, $accepted_args is default 1.
+        $this->loader->add_action( 'woocommerce_coupon_is_valid',$plugin_public, 'update_coupon_if_YYYPush',10,3 ); // Where $priority is default 10, $accepted_args is default 1.
 
     }
 
