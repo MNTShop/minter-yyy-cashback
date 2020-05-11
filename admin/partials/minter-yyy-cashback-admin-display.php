@@ -32,7 +32,7 @@
 $options = get_option($this->plugin_name);
 $minter_helper = new FunFasy_helper();
 //error_log($options['minter_wallet_address']);
-$balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_address'],$options['ticker']);
+$balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_address'],$options['coin']);
 //$balanceBipConverted =0 ;
 //
 //$transactionQuery = get_posts([
@@ -76,7 +76,7 @@ $balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_ad
 //    ->setRecipient('dktrv@yandex.ru')
 //    ->setSender(get_bloginfo())
 //    ->setCost($options['register_cost'])
-//    ->setTicker($options['ticker'])
+//    ->setTicker($options['coin'])
 //    ->setBipPrice($options['bip_price'])
 //    ->setTitleAdmin('pay for register '.'dktrv@yandex.ru');
 //if($options['register_use_password']){
@@ -134,7 +134,7 @@ $balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_ad
 //                    ->setRecipient($user_email)
 //                    ->setSender(get_bloginfo())
 //                    ->setCost($cost_per_user)
-//                    ->setTicker($options['ticker'])
+//                    ->setTicker($options['coin'])
 //                    ->setBipPrice($options['bip_price'])
 //                    ->setTitleAdmin('pay for register ' . $user_email);
 //                if ($options['schedule_use_password']) {
@@ -262,7 +262,7 @@ $balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_ad
                                        class="jquery-datepicker" type="text"
                                        value="<?php if(!empty($options['schedule_time'])) esc_attr_e($options['schedule_time']);?>" />
                                 <small class="description">
-                                    <?php  _e('In Minter Wallet section you can add custom ticker',$this->plugin_name); ?>
+                                    <?php  _e('In Minter Wallet section you can add custom coin',$this->plugin_name); ?>
                                 </small>
                             </td>
                         </tr>
@@ -280,7 +280,7 @@ $balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_ad
                                        class="myc-setting-text" type="text"
                                        value="<?php if(!empty($options['schedule_cost'])) esc_attr_e($options['schedule_cost']);?>" />
                                 <small class="description">
-                                    <?php  _e('In Minter Wallet section you can add custom ticker',$this->plugin_name); ?>
+                                    <?php  _e('In Minter Wallet section you can add custom coin',$this->plugin_name); ?>
                                 </small>
                             </td>
                         </tr>
@@ -448,7 +448,7 @@ $balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_ad
                                        class="myc-setting-text" type="text"
                                        value="<?php if(!empty($options['register_cost'])) esc_attr_e($options['register_cost']);?>" />
                                 <small class="description">
-                                    <?php  _e('In Minter Wallet section you can add custom ticker',$this->plugin_name); ?>
+                                    <?php  _e('In Minter Wallet section you can add custom coin',$this->plugin_name); ?>
                                 </small>
                             </td>
                         </tr>
@@ -577,13 +577,13 @@ $balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_ad
                     <tbody>
 
                     <tr class="myc-setting">
-                        <th scope="row"><label for="<?php echo $this->plugin_name;?>-ticker"
-                            ><?php  _e('Wallet ticker', $this->plugin_name)?></label></th>
+                        <th scope="row"><label for="<?php echo $this->plugin_name;?>-coin"
+                            ><?php  _e('Wallet coin', $this->plugin_name)?></label></th>
                         <td>
-                            <input id="<?php echo $this->plugin_name;?>-ticker"
-                                   name="<?php echo $this->plugin_name;?>[ticker]"
+                            <input id="<?php echo $this->plugin_name;?>-coin"
+                                   name="<?php echo $this->plugin_name;?>[coin]"
                                    class="myc-setting-text" type="text"
-                                   value="<?php if(!empty($options['ticker'])) esc_attr_e($options['ticker']);?>" />
+                                   value="<?php if(!empty($options['coin'])) esc_attr_e($options['coin']);?>" />
                             <small class="description">
                                 <?php  _e('Which coin use for pushes? example BIP',$this->plugin_name); ?>
                             </small>
@@ -739,8 +739,8 @@ $balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_ad
                         <blockquote>
                             <p>When you install a plugin that generates a new empty wallet to send rewards.</p>
                         </blockquote>
-                        <p>Input your ticker here. All generated rewards will be sent in that ticker.</p>
-                        <p>The balance would be displayed in the ticker</p>
+                        <p>Input your coin here. All generated rewards will be sent in that coin.</p>
+                        <p>The balance would be displayed in the coin</p>
                         <blockquote>
                             <p>Also in this section contain all information about wallet. Such as wallet mnemonic phrase, just copy and paste in your wallet app for example here <a href="https://wallet.bip.to" title="BIP Wallet" rel="nofollow">BIP Wallet</a>. And you can administrate wallet your new wallet.</p>
                         </blockquote>

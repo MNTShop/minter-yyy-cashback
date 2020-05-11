@@ -25,10 +25,10 @@ class WooCommerce_helper
             $coupon_code = $this->link_id; // Code
             //get commission
             //converted from bip to local currency
-            if($this->ticker==='BIP'){
+            if($this->coin==='BIP'){
                 $amount = $amount_to_transfer*$this->bip_price;
             }else{
-                $TickerPriceBip = $minter_helper->getTickerPriceBip($this->ticker);
+                $TickerPriceBip = $minter_helper->getTickerPriceBip($this->coin);
                 $amount = $amount_to_transfer*$this->bip_price*$TickerPriceBip;
             }
             $discount_type = 'fixed_cart'; // Type: fixed_cart, percent, fixed_product, percent_product

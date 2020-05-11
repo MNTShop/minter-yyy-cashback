@@ -16,6 +16,13 @@ use GuzzleHttp\Exception\RequestException;
  */
 class YYY_push
 {
+
+    /**
+     * Id for customization YYY.Push
+     * @var int
+     */
+    protected $customization_id;
+
     /**
      * The unique identifier of this plugin.
      *

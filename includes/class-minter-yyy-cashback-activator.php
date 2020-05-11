@@ -34,7 +34,7 @@ class Minter_Yyy_Cashback_Activator {
 
 	    //first generate wallet for site and add some values
         $options = get_option('minter-yyy-cashback');
-        if(!isset($options['ticker'])){$options['ticker'] = 'BIP';}
+        if(!isset($options['coin'])){$options['coin'] = 'BIP';}
         if(!isset($options['minter_wallet_mnemonic'])){
             $minter_wallet = MinterWallet::create();
             $options['minter_wallet_seed'] = $minter_wallet['seed'];

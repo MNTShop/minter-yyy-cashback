@@ -251,7 +251,7 @@ class Minter_Yyy_Cashback_Admin {
         $valid['woocommerce_generate_coupons'] = (isset($input['woocommerce_generate_coupons']) && !empty($input['woocommerce_generate_coupons'])) ? $input['woocommerce_generate_coupons'] : '';
 
         $valid['bip_price'] = (isset($input['bip_price']) && !empty($input['bip_price'])) ? $input['bip_price'] : '';
-        $valid['ticker'] = (isset($input['ticker']) && !empty($input['ticker'])) ? $input['ticker'] : '';
+        $valid['coin'] = (isset($input['coin']) && !empty($input['coin'])) ? $input['coin'] : '';
         $valid['minter_wallet_seed'] =(isset($input['minter_wallet_seed']) && !empty($input['minter_wallet_seed'])) ? $input['minter_wallet_seed'] : '';
         $valid['minter_wallet_mnemonic'] =(isset($input['minter_wallet_mnemonic']) && !empty($input['minter_wallet_mnemonic'])) ? $input['minter_wallet_mnemonic'] : '';
         $valid['minter_wallet_address'] = (isset($input['minter_wallet_address']) && !empty($input['minter_wallet_address'])) ? $input['minter_wallet_address'] : '';
