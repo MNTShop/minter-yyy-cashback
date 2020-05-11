@@ -102,41 +102,9 @@ class Minter_Yyy_Cashback_Public {
 
 	//Create new push reward based on option
     public function pay_for_user_registration($user_id){
-        $options = get_option($this->plugin_name);
-        $user_info = get_userdata($user_id);
-        $YYY_push = new YYY_push();
-        $YYY_push
-            ->setUserId($user_id)
-            ->setRecipient($user_info->user_email)
-            ->setSender(get_bloginfo())
-            ->setCost($options['register_cost'])
-            ->setTicker($options['ticker'])
-            ->setBipPrice($options['bip_price'])
-            ->setTitleAdmin('pay for register '.$user_info->user_email);
-        if($options['register_use_password']){
-            $YYY_push->setPassword(bin2hex(random_bytes(3)));
-        }if($options['register_customization_id']){
-            $YYY_push->setCustomizationSettingId( $options['register_customization_id']);
-        }
-        $YYY_push->save();
-       if( $YYY_push->request_push()){
-           $minter_helper = new FunFasy_helper();
-           if($minter_helper->pay_off_push($YYY_push)!==false){
-               if($options['woocommerce_generate_coupons']){
-                   $YYY_push->generate_coupon_for_push();
-               }
-               if(false===$YYY_push->sendEmail('register')){
-                   error_log('Email with minter push are Not send '.$YYY_push->getTitleAdmin());
-                   //try more
-               }
-           }else{
-               error_log('Push not added balance  '.$YYY_push->getTitleAdmin());
-           }
-       }else{
-           error_log('YYY.cash not created push');
-       }
-
-
+	    // I want just create a reward for user like that try new Register_reward($user_id)
+        $reward = new Register_reward($user_id);
+        $reward->send();
     }
 
 
@@ -154,7 +122,7 @@ class Minter_Yyy_Cashback_Public {
                     'posts_per_page' => 1,
                     'meta_query' => array(
                         array(
-                            'key' => YYY_push::getLinkIdKey(),
+                            'key' => YYY_push::$link_id_key,
                             'value' => $coupon->get_code(),
                             'compare' => 'IN'
                         )

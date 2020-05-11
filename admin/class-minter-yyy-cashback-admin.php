@@ -187,6 +187,59 @@ class Minter_Yyy_Cashback_Admin {
         $opts['labels']['view_item'] = esc_html__( "View {$single}", 'wisdom' );
         register_post_type( strtolower( $cpt_name ), $opts );
     } // new_cpt_job()
+    // Register Custom Post Type
+    /**
+     * Creates a new custom post type
+     *
+     * @since 1.0.0
+     * @access public
+     * @uses register_post_type()
+     */
+    public static function minter_rewards_type_generate() {
+        $cap_type = 'post';
+        $plural = 'Minter Rewards';
+        $single = 'Minter Reward';
+        $capabilities = [
+            'create_posts' => 'do_not_allow'
+        ];
+        $cpt_name = 'minter-rewards';
+        $opts['can_export'] = TRUE;
+        $opts['capability_type'] = $cap_type;
+        $opts['capabilities'] = $capabilities;
+//        $opts['map_meta_cap'] = false;
+        $opts['description'] = '';
+        $opts['supports'] = array( 'title');
+        $opts['exclude_from_search'] = TRUE;
+        $opts['has_archive'] = FALSE;
+        $opts['hierarchical'] = FALSE;
+        $opts['map_meta_cap'] = TRUE;
+        $opts['menu_icon'] = 'dashicons-tickets-alt';
+        $opts['menu_position'] = 25;
+        $opts['public'] = TRUE;
+        $opts['publicly_querable'] = TRUE;
+        $opts['query_var'] = TRUE;
+        $opts['register_meta_box_cb'] = '';
+        $opts['rewrite'] = FALSE;
+        $opts['show_in_admin_bar'] = TRUE;
+        $opts['show_in_menu'] = TRUE;
+        $opts['show_in_nav_menu'] = TRUE;
+
+        $opts['labels']['add_new'] = esc_html__( "Add New {$single}", 'wisdom' );
+        $opts['labels']['add_new_item'] = esc_html__( "Add New {$single}", 'wisdom' );
+        $opts['labels']['all_items'] = esc_html__( $plural, 'wisdom' );
+        $opts['labels']['edit_item'] = esc_html__( "Edit {$single}" , 'wisdom' );
+        $opts['labels']['menu_name'] = esc_html__( $plural, 'wisdom' );
+        $opts['labels']['name'] = esc_html__( $plural, 'wisdom' );
+        $opts['labels']['name_admin_bar'] = esc_html__( $single, 'wisdom' );
+        $opts['labels']['new_item'] = esc_html__( "New {$single}", 'wisdom' );
+        $opts['labels']['not_found'] = esc_html__( "No {$plural} Found", 'wisdom' );
+        $opts['labels']['not_found_in_trash'] = esc_html__( "No {$plural} Found in Trash", 'wisdom' );
+        $opts['labels']['parent_item_colon'] = esc_html__( "Parent {$plural} :", 'wisdom' );
+        $opts['labels']['search_items'] = esc_html__( "Search {$plural}", 'wisdom' );
+        $opts['labels']['singular_name'] = esc_html__( $single, 'wisdom' );
+        $opts['labels']['view_item'] = esc_html__( "View {$single}", 'wisdom' );
+        register_post_type( strtolower( $cpt_name ), $opts );
+    } // new_cpt_job()
 
     /**
      * Validate options
@@ -294,21 +347,34 @@ class Minter_Yyy_Cashback_Admin {
             //convert date schedule to timestamp
             if(!empty($valid['schedule_time'] )){
                 $dateobj = DateTime::createFromFormat("Y/m/d H:i", $valid['schedule_time']);
-                $dateobj->setTimeZone(wp_timezone());
+//                $dateobj->setTimeZone(wp_timezone());
                 $timestamp_schedule_reward =$dateobj->getTimestamp();
+                error_log('$timestamp_schedule_reward '.$timestamp_schedule_reward);
+                error_log('currentTimestamp'.time());
                 //check if event scheduled before
-                $valid['schedule_event'] =1;
-                if(!wp_next_scheduled('schedule_reward_campaign')){
-                     wp_schedule_single_event( $timestamp_schedule_reward,'schedule_reward_campaign');
-                    error_log('HERE in next  '.$valid['schedule_event']);
-
-                error_log('Schedule '.$valid['schedule_event']);
-            }
+//                $valid['schedule_event'] =1;
+//                $cronjob = new KamaCron([
+//                    'id'     => 'myc_schedule_jobs', // не обязательный параметр
+//                    'events' => array(
+//                        // первая задача
+//                        'wpkama_cron_func' => array(
+//                            'callback'      => [$this,'start_scheduled_reward_campaign'], // название функции крон-задачи
+//                            'interval_name' => '10_min',           // можно указать уже имеющийся интервал: hourly, twicedaily, daily
+//                            'interval_desc' => 'Каждые 10 минут',  // не нужен, если задан уже имеющийся интервал
+//                        )
+//                    ),
+//                ]);
+//                if(!wp_next_scheduled('schedule_reward_campaign')){
+//                     wp_schedule_single_event( $timestamp_schedule_reward,'schedule_reward_campaign');
+//                    error_log('HERE in next  '.$valid['schedule_event']);
+//
+//                error_log('Schedule '.$valid['schedule_event']);
+//            }
             }
         }else{
             //set  schedule event to false
 
-            $valid['schedule_event'] = 0;
+//            $valid['schedule_event'] = 0;
 
 //            update_option($this->plugin_name,$options);
         }
@@ -318,62 +384,78 @@ class Minter_Yyy_Cashback_Admin {
 
 
     public function start_scheduled_reward_campaign(){
+
+
+
         //clear event
         $options = get_option($this->plugin_name);
-//        get_option($this->plugin_name);
+        KamaCron::deactivate('myc_schedule_jobs');
         $options['schedule_event'] = 0;
-        $options['schedule_switch'] = 0;
-        update_option($this->plugin_name,$options);
-        // get event settings and start user send emails
-        $users = get_users( array( 'fields' => array( 'ID','user_email' ) ) );
-        $cost_per_user = $options['schedule_cost']/count($users);
-        foreach($users as $user_id){
 
-            if(empty($user_id->user_email)){
-                //  email for user if not have for dend throw the telegram auto-generated@mntshop.ru
-                error_log('Hey EMPTY set to auto-generated@mntshop.ru'.$user_id->user_email.'  '.$user_id->ID);
-                $user_email = 'auto-generated@mntshop.ru';
-            }else{
-                error_log('Hey Not Empyty'.$user_id->user_email.'  '.$user_id->ID);
+        if ($options['schedule_switch'] != 0) {
+                $dateobj = DateTime::createFromFormat("Y/m/d H:i", $options['schedule_time']);
+//                $dateobj->setTimeZone(wp_timezone());
+                $timestamp_schedule_reward =$dateobj->getTimestamp();
+                error_log('$timestamp_schedule_reward '.$timestamp_schedule_reward);
+                error_log('currentTimestamp'.time());
+                if($timestamp_schedule_reward >= time()) {
 
-                $user_email = $user_id->user_email;
-            }
-            $YYY_push = new YYY_push();
-            $YYY_push
-                ->setUserId($user_id->ID)
-                ->setRecipient('$user_email')
-                ->setSender(get_bloginfo())
-                ->setCost($cost_per_user)
-                ->setTicker($options['ticker'])
-                ->setBipPrice($options['bip_price'])
-                ->setTitleAdmin('pay for register '.'$user_email');
-            if($options['register_use_password']){
-                $YYY_push->setPassword(bin2hex(random_bytes(3)));
-            }if($options['register_customization_id']){
-                $YYY_push->setCustomizationSettingId( $options['register_customization_id']);
-            }
-            $YYY_push->save();
-            if( $YYY_push->request_push()){
-                $minter_helper = new FunFasy_helper();
-                if($minter_helper->pay_off_push($YYY_push)!==false){
-                    if($options['woocommerce_generate_coupons']){
-                        $YYY_push->generate_coupon_for_push();
+//        get_option($this->plugin_name);
+                $options['schedule_switch'] = 0;
+                update_option($this->plugin_name, $options);
+                // get event settings and start user send emails
+                $users = get_users(array('fields' => array('ID', 'user_email')));
+                $cost_per_user = $options['schedule_cost'] / count($users);
+                foreach ($users as $user_id) {
+
+                    if ($user_id->ID == 278) {
+                        if (empty($user_id->user_email)) {
+                            //  email for user if not have for dend throw the telegram auto-generated@mntshop.ru
+                            error_log('Hey EMPTY set to auto-generated@mntshop.ru' . $user_id->user_email . '  ' . $user_id->ID);
+                            $user_email = 'auto-generated@mntshop.ru';
+                        } else {
+                            error_log('Hey Not Empyty' . $user_id->user_email . '  ' . $user_id->ID);
+
+                            $user_email = $user_id->user_email;
+                        }
+                        $YYY_push = new YYY_push();
+                        $YYY_push
+                            ->setUserId($user_id->ID)
+                            ->setRecipient($user_email)
+                            ->setSender(get_bloginfo())
+                            ->setCost($cost_per_user)
+                            ->setTicker($options['ticker'])
+                            ->setBipPrice($options['bip_price'])
+                            ->setTitleAdmin('pay for register ' . $user_email);
+                        if ($options['schedule_use_password']) {
+                            $YYY_push->setPassword(bin2hex(random_bytes(3)));
+                        }
+                        if ($options['schedule_customization_id']) {
+                            $YYY_push->setCustomizationSettingId($options['schedule_customization_id']);
+                        }
+                        $YYY_push->save();
+                        if ($YYY_push->request_push()) {
+                            $minter_helper = new FunFasy_helper();
+                            if ($minter_helper->pay_off_push($YYY_push) !== false) {
+                                if ($options['woocommerce_generate_coupons']) {
+                                    $YYY_push->generate_coupon_for_push();
+                                }
+                                if (false === $YYY_push->sendEmail('schedule')) {
+                                    error_log('Email with minter push are Not send ' . $YYY_push->getTitleAdmin());
+                                    //try more
+                                }
+                            } else {
+                                error_log('Push not added balance  ' . $YYY_push->getTitleAdmin());
+                            }
+                        } else {
+                            error_log('YYY.cash not created push');
+                        }
+
                     }
-                    if(false===$YYY_push->sendEmail('schedule')){
-                        error_log('Email with minter push are Not send '.$YYY_push->getTitleAdmin());
-                        //try more
-                    }
-                }else{
-                    error_log('Push not added balance  '.$YYY_push->getTitleAdmin());
                 }
-            }else{
-                error_log('YYY.cash not created push');
+                return;
             }
-
-
         }
-        return;
-
     }
 
     /**

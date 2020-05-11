@@ -70,7 +70,7 @@ class Minter_Yyy_Cashback {
 		if ( defined( 'MINTER_YYY_CASHBACK_VERSION' ) ) {
 			$this->version = MINTER_YYY_CASHBACK_VERSION;
 		} else {
-			$this->version = '1.1.0';
+			$this->version = '2.0.0';
 		}
 		$this->plugin_name = 'minter-yyy-cashback';
 
@@ -170,6 +170,7 @@ class Minter_Yyy_Cashback {
 
         // Add Minter Push type
         $this->loader->add_action('init', $plugin_admin, 'minter_push_type_generate');
+        $this->loader->add_action('init', $plugin_admin, 'minter_rewards_type_generate');
         $this->loader->add_action('add_meta_boxes_minter-push', $plugin_admin, 'myc_add_metabox');
         // Add cron job for send Rewards campaign
 

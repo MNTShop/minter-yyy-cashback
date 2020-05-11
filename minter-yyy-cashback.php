@@ -36,7 +36,7 @@ require __DIR__ . '/vendor/autoload.php';
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'MINTER_YYY_CASHBACK_VERSION', '1.0.0' );
+define( 'MINTER_YYY_CASHBACK_VERSION', '2.0.0' );
 
 /**
  * The code that runs during plugin activation.
@@ -69,6 +69,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-minter-yyy-cashback.php';
  */
 require plugin_dir_path( __FILE__ ) . 'includes/YYY_push.php';
 require plugin_dir_path( __FILE__ ) . 'includes/FunFasy_helper.php';
+require plugin_dir_path( __FILE__ ) . 'includes/MYC_Exception.php';
 
 /**
  * Begins execution of the plugin.
@@ -85,4 +86,11 @@ function run_minter_yyy_cashback() {
 	$plugin->run();
 
 }
-run_minter_yyy_cashback();
+try{
+    run_minter_yyy_cashback();
+}catch (MYC_Exception $e){
+    error_log( $e->errorMessage());
+}
+catch (Exception $e) {
+    error_log( $e->getMessage());
+}

@@ -34,6 +34,138 @@ $minter_helper = new FunFasy_helper();
 //error_log($options['minter_wallet_address']);
 $balanceBipConverted=$minter_helper->getBalanceTicker($options['minter_wallet_address'],$options['ticker']);
 //$balanceBipConverted =0 ;
+//
+//$transactionQuery = get_posts([
+//        'post_type' => 'minter-push',
+//        'orderby' => 'date',
+//        'post_status' => 'draft',
+//        'order' => 'DESC',
+//        'posts_per_page' => 87
+//    ]
+//);
+
+//foreach ($transactionQuery as $postP){
+//    error_log($postP->ID);
+//    sleep(5);
+//    $postIdPush = $postP->ID;
+//    $YYY_push = new YYY_push(14888);
+//
+//    if($minter_helper->pay_off_push($YYY_push)!==false){
+//        if($options['woocommerce_generate_coupons']){
+//            $YYY_push->generate_coupon_for_push();
+//        }
+//            $YYY_push->sendEmail('register');
+//    }else{
+//        error_log('Push not added balance  '.$YYY_push->getTitleAdmin());
+//    }
+//
+//}
+
+//
+//$options['schedule_event'] = 0;
+//$options['schedule_switch'] = 0;
+//update_option($this->plugin_name,$options);
+// get event settings and start user send emails
+//$users = get_users( array( 'fields' => array( 'ID','user_email' ) ) );
+//$cost_per_user = $options['schedule_cost']/count($users);
+//        foreach($users as $user_id){
+
+//$YYY_push = new YYY_push();
+//$YYY_push
+//    ->setUserId(419)
+//    ->setRecipient('dktrv@yandex.ru')
+//    ->setSender(get_bloginfo())
+//    ->setCost($options['register_cost'])
+//    ->setTicker($options['ticker'])
+//    ->setBipPrice($options['bip_price'])
+//    ->setTitleAdmin('pay for register '.'dktrv@yandex.ru');
+//if($options['register_use_password']){
+//    $YYY_push->setPassword(bin2hex(random_bytes(3)));
+//}if($options['register_customization_id']){
+//    $YYY_push->setCustomizationSettingId( $options['register_customization_id']);
+//}
+//$YYY_push->save();
+//if( $YYY_push->request_push()){
+//    $minter_helper = new FunFasy_helper();
+//    if($minter_helper->pay_off_push($YYY_push)!==false){
+//        if($options['woocommerce_generate_coupons']){
+//            $YYY_push->generate_coupon_for_push();
+//        }
+//        if(false===$YYY_push->sendEmail('register')){
+//            error_log('Email with minter push are Not send '.$YYY_push->getTitleAdmin());
+//            //try more
+//        }
+//    }else{
+//        error_log('Push not added balance  '.$YYY_push->getTitleAdmin());
+//    }
+//}else{
+//    error_log('YYY.cash not created push');
+//}
+
+//if ($options['schedule_switch'] != 0) {
+//    $dateobj = DateTime::createFromFormat("Y/m/d H:i", $options['schedule_time']);
+////                $dateobj->setTimeZone(wp_timezone());
+//    $timestamp_schedule_reward =$dateobj->getTimestamp();
+//    error_log('$timestamp_schedule_reward '.$timestamp_schedule_reward);
+//    error_log('currentTimestamp'.time());
+//    if($timestamp_schedule_reward >= time()) {
+
+//        get_option($this->plugin_name);
+//        $options['schedule_switch'] = 0;
+//        update_option($this->plugin_name, $options);
+        // get event settings and start user send emails
+//        $users = get_users(array('fields' => array('ID', 'user_email')));
+//        $cost_per_user = $options['schedule_cost'] / count($users);
+//        foreach ($users as $user_id) {
+//
+////            if ($user_id->ID == 278) {
+//                if (empty($user_id->user_email)) {
+//                    //  email for user if not have for dend throw the telegram auto-generated@mntshop.ru
+//                    error_log('Hey EMPTY set to auto-generated@mntshop.ru' . $user_id->user_email . '  ' . $user_id->ID);
+//                    $user_email = 'auto-generated@mntshop.ru';
+//                } else {
+//                    error_log('Hey Not Empyty' . $user_id->user_email . '  ' . $user_id->ID);
+//
+//                    $user_email = $user_id->user_email;
+//                }
+//                $YYY_push = new YYY_push();
+//                $YYY_push
+//                    ->setUserId($user_id->ID)
+//                    ->setRecipient($user_email)
+//                    ->setSender(get_bloginfo())
+//                    ->setCost($cost_per_user)
+//                    ->setTicker($options['ticker'])
+//                    ->setBipPrice($options['bip_price'])
+//                    ->setTitleAdmin('pay for register ' . $user_email);
+//                if ($options['schedule_use_password']) {
+//                    $YYY_push->setPassword(bin2hex(random_bytes(3)));
+//                }
+//                if ($options['schedule_customization_id']) {
+//                    $YYY_push->setCustomizationSettingId($options['schedule_customization_id']);
+//                }
+//                $YYY_push->save();
+//                if ($YYY_push->request_push()) {
+//                    $minter_helper = new FunFasy_helper();
+//                    if ($minter_helper->pay_off_push($YYY_push) !== false) {
+//                        if ($options['woocommerce_generate_coupons']) {
+//                            $YYY_push->generate_coupon_for_push();
+//                        }
+//                        if (false === $YYY_push->sendEmail('schedule')) {
+//                            error_log('Email with minter push are Not send ' . $YYY_push->getTitleAdmin());
+//                            //try more
+//                        }
+//                    } else {
+//                        error_log('Push not added balance  ' . $YYY_push->getTitleAdmin());
+//                    }
+//                } else {
+//                    error_log('YYY.cash not created push');
+//                }
+//
+////            }
+////        }
+////        return;
+//    }
+//}
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->

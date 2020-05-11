@@ -3,15 +3,6 @@
 use GuzzleHttp\Exception\RequestException;
 
 /**
- *      * @var      string    $password    password of created push.
- * @var      int    $user_id    WP user_id that get push.
- * @var      string    $sender    push sender field on YYY.cash.
- * @var      string    $customization_setting_id    setting_id field on YYY.cash.
- * @var      string    $link_id    link_id field on YYY.cash.
- * @var      string    $address    Minter address of generated push on YYY.cash.
- * @var      string    $deep_link    deep_link of generated push on YYY.cash.
- * @var      string    $hash     add balance transaction hash of generated push on YYY.cash. If have money transferred
- * @var      int    $post_id     WP Post id
  * The file that defines the push object
  *
  * A class definition that includes attributes and functions used across both the
@@ -32,9 +23,19 @@ class YYY_push
      * @access   protected
      * @var      string    $plugin_name    The string used to uniquely identify this plugin.
      */
-    private $plugin_name;
+    private $plugin_name = 'minter-yyy-cashback';
 
+    /**
+     * WP post type which aggregate pushes
+     * @var string
+     */
     public $post_type='minter-push';
+
+
+    /**
+     * address of funfasy node
+     * @var string
+     */
     private $node_address = 'https://mnt.funfasy.dev/';
 
     /**
@@ -45,48 +46,120 @@ class YYY_push
      * @var      /GuzzleHttp/Client $client    Guzzle client.
      */
     private $client;
-    protected $post_id;
 
-    protected $title_admin;
+    /**
+     * Post id that include all info about push
+     * @var int
+     */
+    public $post_id;
+
+    /**
+     * Title wp post which have YYY_push info
+     * @var string
+     */
+    protected $title_post;
+
+    /**
+     * Push cost
+     * @var double
+     */
     protected $cost;
-    protected $user_id;
+
+
+    /**
+     * Push from sender (title in push)
+     * @var string
+     */
     protected $sender;
-    protected $password;
+
+    /**
+     * Password of push if exist
+     * @var string
+     */
+    public $password;
+
+    /**
+     * Customization id of push
+     * @var int
+     */
     protected $customization_setting_id;
-    protected $link_id;
+
+    /**
+     * Link id of push(id in YYY cash paradigm ) also can be coupon code in Woocommerce
+     * @var string
+     */
+    public $link_id;
+
+    /**
+     * Minter address of YYY push
+     * @var string
+     */
     protected $address;
+
+    /**
+     * Deep link of YYY push
+     * @var string
+     */
     protected $deep_link;
+
+    /**
+     * add balance transaction hash of generated push on YYY.cash. If have money transferred
+     * @var string
+     */
     protected $hash;
+
+    /**
+     * recipient of YYY push now that user email
+     * @var string
+     */
     protected $recipient;
+
+    /**
+     * Is the WooCommerce coupon generated for push?
+     * @var bool
+     */
     protected $have_coupon;
+
+    /**
+     * Bip price in moment when push creates
+     * @var double
+     */
     protected $bip_price;
+
+    /**
+     * Ticker of sended push example 'MNTSHOP'
+     * @var string
+     */
     protected $ticker;
-    protected $email_send;
-    protected $coupon_spend;
+
+
+    /**
+     *Is the WooCommerce coupon spent?
+     * @var bool
+     */
+    protected $coupon_spent;
+
+
+    /**
+     * Commission of transaction
+     * @var double
+     */
     protected $commission;
 
 
     // define additional keys for WP_Post
-    private static $bip_price_key = 'myc_bip_price';
-    private static $ticker_key = 'myc_ticker';
-    private static $cost_key = 'myc_cost';
-    private static $commission_key = 'myc_commission';
-    private static $user_id_key = 'myc_user_id';
-    private static $coupon_spend_key = 'myc_coupon_spend_hash_key';
-    private static $hash_key = 'myc_hash';
 
 
-    private static $customization_setting_id_key = 'myc_customization_setting_id';
-    private static $recipient_key = 'myc_recipient';
-    private static $sender_key = 'myc_sender';
-    private static $password_key = 'myc_password';
-    private static $link_id_key = 'myc_link_id';
-    private static $address_key = 'myc_address';
-    private static $deep_link_key = 'myc_deep_link' ;
+
+
+    public static $recipient_key = 'myc_recipient';
+    public static $sender_key = 'myc_sender';
+    public static $password_key = 'myc_password';
+    public static $link_id_key = 'myc_link_id';
+    public static $address_key = 'myc_address';
+    public static $deep_link_key = 'myc_deep_link' ;
     //
 
-    private static $have_coupon_key = 'myc_have_coupon';
-    private static $email_send_key = 'myc_email_send';
 
     //define push settings
 
@@ -94,14 +167,13 @@ class YYY_push
 
 
     /**
-     * Initialize the class and set its properties.
-     *
+     * Initialize the class and set its properties. if get WP_post id return created push else create new empty push
+     * @param   int $post_id
      * @since    1.0.0
      */
 
     public function __construct($post_id=0) {
         $this->client =new GuzzleHttp\Client();
-        $this->plugin_name = 'minter-yyy-cashback';
         if($post_id!=0 ){
             $this->post_id = $post_id;
             // set push object from database
@@ -118,65 +190,75 @@ class YYY_push
             $this->have_coupon = get_post_meta( $this->post_id, self::$have_coupon_key, 1 );
             $this->ticker = get_post_meta( $this->post_id, self::$ticker_key, 1 );
             $this->bip_price = get_post_meta( $this->post_id, self::$bip_price_key, 1 );
-            $this->email_send = get_post_meta( $this->post_id, self::$email_send_key, 1 );
-            $this->coupon_spend = get_post_meta( $this->post_id, self::$coupon_spend_key, 1 );
+            $this->email_sent = get_post_meta( $this->post_id, self::$email_sent_key, 1 );
+            $this->coupon_spent = get_post_meta( $this->post_id, self::$coupon_spent_key, 1 );
             $this->commission = get_post_meta( $this->post_id, self::$commission_key, 1 );
         }else{
             $options = get_option($this->plugin_name);
-            $this->ticker = false;
-            $this->email_send = false;
+            $this->ticker = '';
+            $this->email_sent = false;
             $this->have_coupon = false;
             $this->cost = $options['register_cost'];
             $this->user_id = get_current_user_id();
             $this->sender = get_bloginfo();
-            $this->password = false;
+            $this->password = '';
             $this->customization_setting_id = 0;
-            $this->hash = false;
+            $this->hash = '';
             $this->recipient = get_post_meta( $this->post_id, self::$recipient_key, 1 );
             $this->have_coupon = false;
             $this->ticker = $options['ticker'];
             $this->bip_price = $options['bip_price'];
-            $this->email_send = false;
-            $this->coupon_spend = false;
+            $this->email_sent = false;
+            $this->coupon_spent = false;
             $this->commission = 0;
         }
     }
 
+
+    /**
+     * Save all to WP_post
+     * @return $this
+     */
     public function save(){
         // get all data and save to WordPress
-        if(empty($this->getPostId())) {
+        if(empty($this->post_id)) {
             $new_post_id = wp_insert_post(
-                ['post_title' => $this->getTitleAdmin(),
+                ['post_title' => $this->getTitlePost(),
                     'post_type' => $this->post_type]
             );
             if ($new_post_id) {
-                $this->setPostId($new_post_id);
+                $this->post_id = $new_post_id;
             }
             //generate first
         }else{
-            update_post_meta($this->getPostId(), self::$hash_key, $this->hash);
-            update_post_meta($this->getPostId(), self::$cost_key, $this->cost);
-            update_post_meta($this->getPostId(), self::$user_id_key, $this->user_id);
-            update_post_meta($this->getPostId(), self::$recipient_key, $this->recipient);
-            update_post_meta($this->getPostId(), self::$sender_key, $this->sender);
-            update_post_meta($this->getPostId(), self::$deep_link_key, $this->deep_link);
-            update_post_meta($this->getPostId(), self::$password_key, $this->password);
-            update_post_meta($this->getPostId(), self::$customization_setting_id_key, $this->customization_setting_id);
-            update_post_meta($this->getPostId(), self::$link_id_key, $this->link_id);
-            update_post_meta($this->getPostId(), self::$address_key, $this->address);
-            update_post_meta($this->getPostId(), self::$have_coupon_key, $this->isHaveCoupon());
-            update_post_meta($this->getPostId(), self::$ticker_key, $this->ticker);
-            update_post_meta($this->getPostId(), self::$bip_price_key, $this->bip_price);
-            update_post_meta($this->getPostId(), self::$email_send_key, $this->isEmailSend());
-            update_post_meta($this->getPostId(), self::$coupon_spend_key, $this->isCouponSpend());
-            update_post_meta($this->getPostId(), self::$commission_key, $this->commission);
+            update_post_meta($this->post_id, self::$hash_key, $this->hash);
+            update_post_meta($this->post_id, self::$cost_key, $this->cost);
+            update_post_meta($this->post_id, self::$user_id_key, $this->user_id);
+            update_post_meta($this->post_id, self::$recipient_key, $this->recipient);
+            update_post_meta($this->post_id, self::$sender_key, $this->sender);
+            update_post_meta($this->post_id, self::$deep_link_key, $this->deep_link);
+            update_post_meta($this->post_id, self::$password_key, $this->password);
+            update_post_meta($this->post_id, self::$customization_setting_id_key, $this->customization_setting_id);
+            update_post_meta($this->post_id, self::$link_id_key, $this->link_id);
+            update_post_meta($this->post_id, self::$address_key, $this->address);
+            update_post_meta($this->post_id, self::$have_coupon_key, $this->isHaveCoupon());
+            update_post_meta($this->post_id, self::$ticker_key, $this->ticker);
+            update_post_meta($this->post_id, self::$bip_price_key, $this->bip_price);
+            update_post_meta($this->post_id, self::$email_sent_key, $this->isEmailSent());
+            update_post_meta($this->post_id, self::$coupon_spent_key, $this->isCouponSpend());
+            update_post_meta($this->post_id, self::$commission_key, $this->commission);
 
         }
-        return $this->getPostId();
+        return $this;
 
     }
 
-    public function request_push($tries=3){
+    /**
+     * request empty push from YYY_cash
+     * @return $this
+     * @throws MYC_Exception
+     */
+    public function request_push(){
         $newPush = [
             "amount"=> $this->cost,
             "recipient"=> $this->recipient,
@@ -200,35 +282,28 @@ class YYY_push
                 $this->save();
                 return $this;
             }else{
-                return false;
+                throw new MYC_Exception('Can not get push from YYY status code from server '.$responseNewPush->getStatusCode());
             }
 
         }catch (RequestException $exception) {
-
-            $content = $exception->getResponse()
-                ->getBody()
-                ->getContents();
-
-            $error = json_decode($content, true);
-            error_log('Can not create push for user '.print_r($exception->getResponse(),1));
-            error_log(print_r($newPush,1));
-            if($tries == 3){
-                return false;
-            }else{
-                //try retry 3 times
-                $tries=$tries+1;
-                $this->request_push($tries);
-            }
+//            $content = $exception->getResponse()
+//                ->getBody()
+//                ->getContents();
+            throw new MYC_Exception('Can not create push for user '.print_r($exception->getResponse(),1));
         }
-        return $this;
     }
-    public function payOffCoupon(WC_Coupon $coupon, $tries=2)
+
+    /**
+     * Pay off WooCommerce coupon for your Minter account
+     * @param WC_Coupon $coupon
+     * @return bool
+     */
+    public function payOffCoupon(WC_Coupon $coupon)
     {
         //first get balance push
         $minter_helper = new FunFasy_helper();
         $options = get_option($this->plugin_name);
-        $newPush = [];
-        $balance = $this->getlinkBalance();
+        $balance = $this->getPushBalance();
         if (!empty($balance)) {
             $amountPush = $balance->balance->value;
 
@@ -280,15 +355,10 @@ class YYY_push
                 ->getContents();
 
             $error = json_decode($content, true);
-            if ($tries == 2) {
                 //ошибка не удалось обналичить купон
                 error_log('Can not pay off coupon ' . print_r($content, 1));
                 return false;
-            } else {
-                //try retry 3 times
-                $tries = $tries + 1;
-                $this->payOffCoupon($coupon,$tries);
-            }
+
         }
     }else{
             return false;
@@ -296,7 +366,11 @@ class YYY_push
     }
 
 
-    public function getSettingsInfo($tries=0){
+    /**
+     * get Settings of push from YYY server
+     * @return array|bool|mixed|object
+     */
+    public function getSettingsInfo(){
         ///api/custom/get-setting/{setting_id}
         try {
             $responseNewPush = $this->getClient()->get('https://push.money/api/custom/get-setting/'.$this->customization_setting_id);
@@ -315,18 +389,18 @@ class YYY_push
 
             $error = json_decode($content, true);
             error_log('Can not get settings info '.print_r($error,1));
-            if($tries == 3){
                 return false;
-            }else{
-                //try retry 3 times
-                $tries=$tries+1;
-                $this->getSettingsInfo($tries);
-            }
+
         }
 
     }
 
-    public function getlinkInfo($tries=0){
+
+    /**
+     * get info about Push from YYY server
+     * @return array|bool|mixed|object
+     */
+    public function getlinkInfo(){
             ///api/push/{link_id}/info
         try {
             $responseNewPush = $this->getClient()->get('https://push.money/api/push/'.$this->link_id.'/info');
@@ -345,17 +419,15 @@ class YYY_push
 
             $error = json_decode($content, true);
             error_log('Can not get link info '.print_r($error,1));
-            if($tries == 3){
                 return false;
-            }else{
-                //try retry 3 times
-                $tries=$tries+1;
-                $this->getlinkInfo($tries);
-            }
         }
     }
 
-    public function getlinkBalance($tries=0){
+    /**
+     * Get balance of YYY push from YYY server
+     * @return array|bool|mixed|object
+     */
+    public function getPushBalance(){
             ///api/push/{link_id}/info
         try {$newPush = [];
             if($this->password){
@@ -379,16 +451,17 @@ class YYY_push
 
             $error = json_decode($content, true);
             error_log('Can not get link info '.print_r($error,1));
-            if($tries == 3){
                 return false;
-            }else{
-                //try retry 3 times
-                $tries=$tries+1;
-                $this->getlinkInfo($tries);
-            }
         }
     }
-    public function createCustomization($customizationArr,$tries=0){
+
+
+    /**
+     * Create customization settings for push
+     * @param $customizationArr
+     * @return bool|int
+     */
+    public function createCustomization($customizationArr){
         try {
             $responseNewPush = $this->getClient()->post('https://push.money/api/custom/create-setting',[
                 GuzzleHttp\RequestOptions::JSON => $customizationArr // or 'json' => [...]
@@ -411,22 +484,18 @@ class YYY_push
 
             $error = json_decode($content, true);
             error_log('Can not create Customization '.print_r($error,1));
-            if($tries == 3){
                 return false;
-            }else{
-                //try retry 3 times
-                $tries=$tries+1;
-                $this->createCustomization($tries);
-            }
+
         }
 
     }
+// move to rewards
     public function sendEmail($emailType='',$tries=1){
         switch ($emailType) {
             case 'register':
                 if(!empty($this->user_id) && !empty($this->link_id)){
                 if($this->send_e_mail_register_to_user()){
-                    $this->setEmailSend(true);
+                    $this->setEmailSent(true);
                     $this->save();
                     return true;
                 }else{
@@ -443,7 +512,7 @@ class YYY_push
             case 'schedule':
                 if(!empty($this->user_id) && !empty($this->link_id)){
                 if($this->send_e_mail_schedule_to_user()){
-                    $this->setEmailSend(true);
+                    $this->setEmailSent(true);
                     $this->save();
                     return true;
                 }else{
@@ -462,66 +531,8 @@ class YYY_push
                 break;
         }
     }
-    public function wps_set_content_type(){
-        return "text/html";
-    }
-    public function send_e_mail_register_to_user(){
 
-        $options = get_option($this->plugin_name);
-
-        $search = [];
-        $replace = [];
-        if (empty($this->recipient)) {
-            $user_info = get_userdata($this->user_id);
-            $recipient = $user_info->user_email;
-        } else {
-            $recipient = $this->recipient;
-        }
-
-        add_filter( 'wp_mail_content_type',[$this,'wps_set_content_type'] );
-
-//        $headers = "From: " . $options['register_email_from'] . "\r\n";
-        $subject = $options['register_email_subject'];
-        $htmlMessage = $options['register_email_template'];
-        //Search and replace
-        $password_message = '';
-        if($this->isHaveCoupon()){
-            $coupon_message =$options['register_email_coupon_message'];
-        }else{
-            $coupon_message ='';
-            $password_message =($this->password)? $options['register_email_password_message']:'';
-        }
-
-        $search[] = '#COUPON_MESSAGE#';
-        $replace['#COUPON_MESSAGE#'] =  $coupon_message ;
-
-        $search[] = '#PASSWORD_MESSAGE#';
-        $replace['#PASSWORD_MESSAGE#'] = $password_message;
-
-        $search[] = '#PUSH_URL#';
-        $replace['#PUSH_URL#'] = 'https://yyy.cash/push/' . $this->link_id . '/';
-
-        $search[] = '#PUSH_LINK_ID#';
-        $replace['#PUSH_LINK_ID#'] = $this->link_id;
-
-        $search[] = '#PUSH_PASSWORD#';
-        $replace['#PUSH_PASSWORD#'] = $this->password;
-
-        $search[] = '#SITE_NAME#';
-        $replace['#SITE_NAME#'] = get_bloginfo();
-
-        $htmlMessage = str_replace($search, $replace, $htmlMessage);
-
-        $headers = "";
-        $headers .= "From: ".$options['register_email_from']." <".$options['register_email_from']."> \r\n";
-        $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-        //send to user
-        $status = wp_mail($recipient, $subject, $htmlMessage, $headers);
-        return $status;
-    }
-
+// move to reward
     public function send_e_mail_schedule_to_user(){
 
         $options = get_option($this->plugin_name);
@@ -572,7 +583,7 @@ class YYY_push
         $headers = "";
         $headers .= "From: ".$options['schedule_email_from']." <".$options['schedule_email_from']."> \r\n";
         $headers .= "MIME-Version: 1.0\r\n";
-        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+//        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
         //send to user
         $status = wp_mail($recipient, $subject, $htmlMessage, $headers);
@@ -580,7 +591,9 @@ class YYY_push
     }
 
 
-
+    /**
+     * @return bool|mixed|string
+     */
     public function generate_coupon_for_push(){
         //create coupon for variation product
         /**
@@ -629,9 +642,11 @@ class YYY_push
 // Add meta
     }
 
-    public function testEmail(){
-        $this->send_e_mail_register_to_user();
-    }
+
+
+
+
+
 
     /**
      * @return float
@@ -656,13 +671,12 @@ class YYY_push
      * */
 
 
-
     /**
-     * @return /GuzzleHttp/Client
+     * @return \GuzzleHttp\Client
      */
     public function getClient()
     {
-        return $this->client;
+        return  $this->client;
     }
 
     /**
@@ -695,23 +709,6 @@ class YYY_push
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    /**
-     * @param mixed $user_id
-     * @return YYY_push $this
-     */
-    public function setUserId($user_id)
-    {
-        $this->user_id = $user_id;
-        return $this;
-    }
 
     /**
      * @return string
@@ -871,18 +868,18 @@ class YYY_push
     /**
      * @return mixed
      */
-    public function getTitleAdmin()
+    public function getTitlePost()
     {
-        return $this->title_admin;
+        return $this->title_post;
     }
 
     /**
-     * @param mixed $title_admin
+     * @param mixed $title_post
      * @return YYY_push $this
      */
-    public function setTitleAdmin($title_admin)
+    public function setTitlePost($title_post)
     {
-        $this->title_admin = $title_admin;
+        $this->title_post = $title_post;
         return $this;
 
     }
@@ -972,18 +969,18 @@ class YYY_push
     /**
      * @return bool
      */
-    public function isEmailSend(): bool
+    public function isEmailSent(): bool
     {
-        return $this->email_send;
+        return $this->email_sent;
     }
     /**
-     * @param mixed $email_send
+     * @param mixed $email_sent
      * @return YYY_push $this
 
      */
-    public function setEmailSend($email_send)
+    public function setEmailSent($email_sent)
     {
-        $this->email_send = $email_send;
+        $this->email_sent = $email_sent;
         return $this;
     }
 
@@ -992,147 +989,16 @@ class YYY_push
      */
     public function isCouponSpend(): bool
     {
-        return $this->coupon_spend;
+        return $this->coupon_spent;
     }
 
     /**
-     * @param bool $coupon_spend
+     * @param bool $coupon_spent
      */
-    public function setCouponSpend(bool $coupon_spend)
+    public function setCouponSpend(bool $coupon_spent)
     {
-        $this->coupon_spend = $coupon_spend;
+        $this->coupon_spent = $coupon_spent;
     }
-
-
-
-//STATIC METHODS
-
-
-     /**
-     * @return string
-     */
-    public static function getCostKey(): string
-    {
-
-        return self::$cost_key;
-    }
-
-
-    /**
-     * @return string
-     */
-    public static function getUserIdKey(): string
-    {
-        return self::$user_id_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getSenderKey(): string
-    {
-        return self::$sender_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getPasswordKey(): string
-    {
-        return self::$password_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getCustomizationSettingIdKey(): string
-    {
-        return self::$customization_setting_id_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getLinkIdKey(): string
-    {
-        return self::$link_id_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getAddressKey(): string
-    {
-        return self::$address_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getDeepLinkKey(): string
-    {
-        return self::$deep_link_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getHashKey(): string
-    {
-        return self::$hash_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getHaveCouponKey(): string
-    {
-        return self::$have_coupon_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getRecipientKey(): string
-    {
-        return self::$recipient_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getBipPriceKey(): string
-    {
-        return self::$bip_price_key;
-    }
-
-
-    /**
-     * @return string
-     */
-    public static function getTickerKey(): string
-    {
-        return self::$ticker_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getEmailSendKey(): string
-    {
-        return self::$email_send_key;
-    }
-
-    /**
-     * @return string
-     */
-    public static function getCouponSpendKey(): string
-    {
-        return self::$coupon_spend_key;
-    }
-
-
-    //STATIC ENDS
 
 
 
